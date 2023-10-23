@@ -1,6 +1,31 @@
 # CRM_Uni
 Aplicação desenvolvida para a Atividade Acadêmica de Implementação de Software - 2023/2
 # Gerência de Configuração de Software
+## Equipes
+### UC1 - Administração de Contatos
+- Gustavo (líder técnico)
+- Gregory
+- Nícolas
+### UC2 Gestão de Casos de Atendimento ao cliente
+- Arthur (Líder)
+- Felipe
+- José
+
+### UC3 Gestão de Campanhas de Marketing
+- Guilherme Augusto
+- Guilherme
+- Filipe
+
+### UC4 Geração de Relatórios de Desempenho de Vendas
+- Luiz Gabriel (líder)
+- Bernardo
+- Mateus
+### UC5 Gestão de Vendas 
+- Julia
+- Jackson
+- Eduardo
+- Maurício
+
 ## Documentação do Projeto
 ### Modelos
 https://drive.google.com/file/d/1Mj9ORK-28S2fFJ-rjff1-8mJHN2TSv2Y/view
@@ -135,4 +160,5 @@ https://github.com/raphaellc/CRM_EM.git
       - \modelos
       - \visoes
 ## Modelo de Colaboração
-    
+
+https://www.loom.com/share/51447929d822491fa729884052303f3c?sid=b8d4f1de-522e-409b-9b8e-1fd8ef2206ff
