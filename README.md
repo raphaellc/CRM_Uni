@@ -31,7 +31,6 @@ Aplicação desenvolvida para a Atividade Acadêmica de Implementação de Softw
 https://drive.google.com/file/d/1Mj9ORK-28S2fFJ-rjff1-8mJHN2TSv2Y/view
 ### Requisitos
 https://www.moodle.unisinos.br/mod/resource/view.php?id=1694905
-Moodle
 ### Repositório de Referência
 https://github.com/raphaellc/CRM_EM.git
 
