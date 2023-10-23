@@ -20,7 +20,7 @@ https://github.com/raphaellc/CRM_EM.git
 ```
   CREATE SCHEMA `crmuni` DEFAULT CHARACTER SET utf8 ;
 ```
-- MySQL 8.0
+- Tabela pessoas
 ```
   CREATE TABLE `pessoas` (
   `id_pessoas` int NOT NULL AUTO_INCREMENT,
