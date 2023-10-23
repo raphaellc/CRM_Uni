@@ -20,6 +20,22 @@ https://github.com/raphaellc/CRM_EM.git
 ```
   CREATE SCHEMA `crmuni` DEFAULT CHARACTER SET utf8 ;
 ```
+- MySQL 8.0
+```
+  CREATE TABLE `pessoas` (
+  `id_pessoas` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_la_0900_ai_ci NOT NULL,
+  `dt_nasc` date DEFAULT NULL,
+  `celular` varchar(12) CHARACTER SET utf8mb4 COLLATE utf8mb4_la_0900_ai_ci DEFAULT NULL,
+  `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_la_0900_ai_ci DEFAULT NULL,
+  `id_setor` int NOT NULL,
+  `ocupacao` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_la_0900_ai_ci DEFAULT NULL,
+  `id_origem` int DEFAULT NULL,
+  `dt_hr_origem` datetime DEFAULT NULL,
+  `id_tipo_pessoa` int NOT NULL,
+  PRIMARY KEY (`id_pessoas`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_la_0900_ai_ci
+```
 # Identificação da configuração
 ## Métodos de Identificação 
 ## Baselines do Projeto
