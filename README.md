@@ -154,11 +154,11 @@ https://github.com/raphaellc/CRM_EM.git
 ## Estrutura do Repositório
 - \CRM_Uni
   - \src
-      - \controladoras
-      - \daos
-      - \dtos
-      - \modelos
-      - \visoes
+      - \controladora
+      - \dao
+      - \dto
+      - \modelo
+      - \visao
 ## Modelo de Colaboração
 
 https://www.loom.com/share/51447929d822491fa729884052303f3c?sid=b8d4f1de-522e-409b-9b8e-1fd8ef2206ff
