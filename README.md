@@ -47,19 +47,19 @@ https://github.com/raphaellc/CRM_EM.git
 ```
 - Tabela pessoas
 ```
-  CREATE TABLE `pessoas` (
-  `id_pessoas` int NOT NULL AUTO_INCREMENT,
+  CREATE TABLE `pessoa` (
+  `id_pessoa` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_la_0900_ai_ci NOT NULL,
-  `dt_nasc` date DEFAULT NULL,
+  `data_nascimento` date NOT NULL,
   `celular` varchar(12) CHARACTER SET utf8mb4 COLLATE utf8mb4_la_0900_ai_ci DEFAULT NULL,
   `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_la_0900_ai_ci DEFAULT NULL,
-  `id_setor` int NOT NULL,
+  `id_setor` int DEFAULT NULL,
+  `id_cargo` int DEFAULT NULL,
   `ocupacao` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_la_0900_ai_ci DEFAULT NULL,
   `id_origem` int DEFAULT NULL,
-  `dt_hr_origem` datetime DEFAULT NULL,
-  `id_tipo_pessoa` int NOT NULL,
-  PRIMARY KEY (`id_pessoas`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_la_0900_ai_ci
+  `data_hora_origem` datetime DEFAULT NULL,
+  PRIMARY KEY (`id_pessoa`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_la_0900_ai_ci;
 ```
 - Tabela campanha
 
@@ -84,8 +84,9 @@ https://github.com/raphaellc/CRM_EM.git
   `cidade` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `estado` varchar(2) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `cep` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id_pessoa` int NOT NULL,
   PRIMARY KEY (`id_endereco`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 ```
 - Tabela pessoa_campanha_status
 ```
@@ -119,6 +120,15 @@ https://github.com/raphaellc/CRM_EM.git
   CONSTRAINT `id_atendimento` FOREIGN KEY (`id_atendimento`) REFERENCES `atendimento` (`id_atendimento`),
   CONSTRAINT `id_status_atendimento` FOREIGN KEY (`id_status_atendimento`) REFERENCES `status_atendimento` (`id_status_atendimento`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+```
+
+- Tabela cargo_pessoa
+```
+ CREATE TABLE `cargo_pessoa` (
+  `id_cargo_pessoa` int NOT NULL AUTO_INCREMENT,
+  `descricao` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id_cargo_pessoa`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 ```
 
 - Tabela setor_pessoa
