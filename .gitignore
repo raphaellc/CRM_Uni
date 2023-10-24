@@ -51,6 +51,7 @@ replay_pid*
 # Ignore build artifacts and IDE-specific files
 target/
 .idea/
+out/
 
 # Ignore log files
 *.log
