@@ -47,6 +47,10 @@ public class VendasModelo {
 		this.dt_venda = dt_venda;
 	}
 	
+	// --------------- Lógica de negócio ----------------
+	
+	
+	
 	
 	
 	
