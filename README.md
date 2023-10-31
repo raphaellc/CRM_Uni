@@ -60,6 +60,26 @@ https://github.com/raphaellc/CRM_EM.git
   `data_hora_origem` datetime DEFAULT NULL,
   PRIMARY KEY (`id_pessoa`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_la_0900_ai_ci;
+
+```
+- Tabela atendimento
+```
+CREATE TABLE `atendimento` (
+  `id_atendimento` int NOT NULL AUTO_INCREMENT,
+  `id_pessoa` int NOT NULL,
+  `id_pessoa_responsavel` int NOT NULL,
+  `dt_abertura` date NOT NULL,
+  `dt_resolucao` date DEFAULT NULL,
+  `desc_problema` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id_categoria` int NOT NULL,
+  `id_prioridade` int DEFAULT NULL,
+  PRIMARY KEY (`id_atendimento`),
+  KEY `id_pessoa_idx` (`id_pessoa`),
+  KEY `id_pessoa_responsavel_idx` (`id_pessoa_responsavel`),
+  CONSTRAINT `id_pessoa` FOREIGN KEY (`id_pessoa`) REFERENCES `pessoas` (`id_pessoas`),
+  CONSTRAINT `id_pessoa_responsavel` FOREIGN KEY (`id_pessoa_responsavel`) REFERENCES `pessoas` (`id_pessoas`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+
 ```
 - Tabela campanha
 
