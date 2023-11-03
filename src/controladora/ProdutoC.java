@@ -15,6 +15,7 @@ public class ProdutoC {
 
     public void armazenarDadosProduto() {
         System.out.println("Dados do produto armazenados: " + nome);
+        System.out.println("Teste");
     }
 
     public int getFluxoSaidaProd() {
