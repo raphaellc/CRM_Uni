@@ -11,7 +11,7 @@ public class VendasDao {
 	private String driver = "com.mysql.cj.jdbc.Driver";
 	private String url = "jdbc:mysql://localhost:3306/crmuni"; //###############------------------ APÓS A ULTIMA "/" COLOCAR O NOME DO BANCO DE DADOS ------------------###############
 	private String user = "root"; //###############------------------ COLOCAR AQUI O USUARIO ------------------###############
-	private String password = "Edm0911!"; //###############------------------ COLOCAR AQUI A SENHA DEFINIDA AO CRIAR O DB ------------------###############
+	private String password = "!"; //###############------------------ COLOCAR AQUI A SENHA DEFINIDA AO CRIAR O DB ------------------###############
 	
 	public Connection conectar() {
 		try {
