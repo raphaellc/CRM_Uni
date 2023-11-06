@@ -1,7 +1,9 @@
+package src.controladora;
+
 import java.util.List;
 
 public class RelatorioDesempenhoVendasC {
-    private EquipeVendasC equipeVendas;
+    private final EquipeVendasC equipeVendas;
 
     public RelatorioDesempenhoVendasC(EquipeVendasC equipeVendas) {
         this.equipeVendas = equipeVendas;

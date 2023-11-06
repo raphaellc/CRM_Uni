@@ -1,5 +1,4 @@
 package src.controladora;
-package controladoras;
 
 import java.util.Date;
 
