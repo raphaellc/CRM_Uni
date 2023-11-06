@@ -2,16 +2,20 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.swing.JFrame;
+
 import dao.PessoaDAO;
 import dto.EnderecoDTO;
 import dto.PessoaDTO;
+import visao.TelaCadastroContato;
+
+// TODO: Excluir classe depois da integração com a Main
 
 public class Main {
 
-    public static void main(String[] args) {
-        mainConsulta();
-//        mainCadastro();
-//        mainDelete();
+    public static void main(final String[] args) {
+        final JFrame tela = new TelaCadastroContato("CRMUni");
+        tela.setVisible(true);
     }
 
     private static void mainConsulta() {
