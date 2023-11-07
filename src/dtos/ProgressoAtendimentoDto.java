@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class ProgressoAtendimentoDto {
     int id_caso_atendimento;
-    String id_status_caso_atendimento;
+    int id_status_caso_atendimento;
     String desc_atualizacao;
     LocalDate data_atualizacao;
 
@@ -17,11 +17,11 @@ public class ProgressoAtendimentoDto {
         this.id_caso_atendimento = id_caso_atendimento;
     }
 
-    public String getId_status_caso_atendimento() {
+    public int getId_status_caso_atendimento() {
         return id_status_caso_atendimento;
     }
 
-    public void setId_status_caso_atendimento(String id_status_caso_atendimento) {
+    public void setId_status_caso_atendimento(int id_status_caso_atendimento) {
         this.id_status_caso_atendimento = id_status_caso_atendimento;
     }
 
