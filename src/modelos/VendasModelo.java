@@ -9,10 +9,8 @@ import dtos.VendasDto;
 
 public class VendasModelo {
 	
-	
 	private List<VendasDto> vendas;
     private VendasDao vendas_dao;
-    
     
     public VendasModelo() {
   
@@ -22,22 +20,6 @@ public class VendasModelo {
     public boolean adicionarVenda(VendasDto contato) {
         vendas.add(contato);
         return vendas_dao.adicionarVendas(contato);
-        
-        
-        
-        
+   
     }
-    
-    
-    
-	
-	
-
-	
-	
-	
-	
-	
-	
-
 }
