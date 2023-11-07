@@ -14,14 +14,18 @@ public class VendasModelo {
     private VendasDao vendas_dao;
     
     
+    
     public VendasModelo() {
   
         vendas = new ArrayList<VendasDto>();
         vendas_dao = new VendasDao();     }
     
+    
     public boolean adicionarVenda(VendasDto contato) {
         vendas.add(contato);
         return vendas_dao.adicionarVendas(contato);
+        
+
         
         
         

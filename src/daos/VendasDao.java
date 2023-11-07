@@ -33,13 +33,14 @@ public class VendasDao {
         try {        	
             connection = conectar(); // Obtém a conexão usando a classe Conexao
 
-            String sql = "INSERT INTO vendas VALUES (?, ?, ?)";
+            String sql = "INSERT INTO vendas VALUES (?, ?, ?, ?)";
 
             PreparedStatement ps = connection.prepareStatement(sql);
             
             ps.setInt(1, vendas.getId_venda());
             ps.setFloat(2, vendas.getValor_venda());
-            ps.setString(3, vendas.getDt_venda());         
+            ps.setString(3, vendas.getDt_venda());
+            ps.setString(4, vendas.getStatus()); 
                    
             // Definindo os atributos restantes da mesma maneira
 
@@ -71,7 +72,7 @@ public class VendasDao {
         
        	connection = conectar(); // Obtém a conexão usando a classe Conexao
        	
-       	String sql = "SELECT id_venda, valor_venda, dt_venda FROM vendas WHERE id_venda=?";
+       	String sql = "SELECT id_venda, valor_venda, dt_venda, status FROM vendas WHERE id_venda=?";
 		try {
 			PreparedStatement ps = connection.prepareStatement(sql);
 		
@@ -84,6 +85,7 @@ public class VendasDao {
 				vendas.setId_venda(rs.getInt(1));
 				vendas.setValor_venda(rs.getFloat(2));
 				vendas.setDt_venda(rs.getString(3));
+				vendas.setStatus(rs.getString(4));
 				
 				return vendas;
 							}
@@ -98,13 +100,13 @@ public class VendasDao {
 		}
 		
 		
-	public boolean atualizarVenda(float valor_venda, int id_venda) {
+	public boolean atualizarVendaStatus(float valor_venda, int id_venda) {
 		
 		Connection connection = null;
         
        	connection = conectar(); // Obtém a conexão usando a classe Conexao
        	
-       	String sql = "UPDATE vendas set valor_venda=? WHERE id_venda=?";
+       	String sql = "UPDATE vendas set status=? WHERE id_venda=?";
 		try {
 			PreparedStatement ps = connection.prepareStatement(sql);
 		
@@ -155,7 +157,7 @@ public List<VendasDto> listarVendas() {
 	
 	try {
 				list = new ArrayList<VendasDto>();
-				String sql = "SELECT id_venda, valor_venda, dt_venda FROM vendas";
+				String sql = "SELECT id_venda, valor_venda, status dt_venda FROM vendas";
 				Connection connection = null;
 			   	connection = conectar(); // Obtém a conexão usando a classe Conexao
 		
@@ -167,6 +169,7 @@ public List<VendasDto> listarVendas() {
 					vendas.setId_venda(rs.getInt(1));
 					vendas.setValor_venda(rs.getFloat(2));
 					vendas.setDt_venda(rs.getString(3));
+					vendas.setStatus(rs.getString(4));
 					
 					list.add(vendas);
 				}

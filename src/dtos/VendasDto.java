@@ -1,5 +1,5 @@
 package dtos;
-import java.util.Date;
+
 
 
 public class VendasDto {
@@ -7,6 +7,10 @@ public class VendasDto {
 	private int id_venda;
 	private float valor_venda;
 	private String dt_venda;
+	private String status;
+	
+	
+	
 	
 	// ---------------- Getters and Setters --------------
 	
@@ -33,19 +37,28 @@ public class VendasDto {
 	public void setDt_venda(String string) {
 		this.dt_venda = string;
 	}
+	
+	public String getStatus() {
+		return status;
+	}
 
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
 	
 	// ---------------- Construtores ----------------
 	
+
 	public VendasDto() {}
 	
 	
-	public VendasDto(int id_venda, float valor_venda, String dt_venda) {
+	public VendasDto(int id_venda, float valor_venda, String dt_venda, String status) {
 		super();
 		this.id_venda = id_venda;
 		this.valor_venda = valor_venda;
 		this.dt_venda = dt_venda;
+		this.status = status;
 	}
 	
 	
