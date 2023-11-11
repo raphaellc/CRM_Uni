@@ -10,15 +10,13 @@ import modelos.VendasModelo;
 
 public class VendasControladora {
 	
-	private VendasVisao model;
-	private VendasVisao view;
+	private VendasModelo model;
 	
 	
 	
-	public VendasControladora(VendasVisao model, VendasVisao view) {
+	public VendasControladora(VendasModelo modelo) {
 		super();
-		this.model = model;
-		this.view = view;
+		this.model = modelo;
 	}
 	
 	

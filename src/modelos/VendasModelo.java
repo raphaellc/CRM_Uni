@@ -12,11 +12,6 @@ public class VendasModelo {
 	private List<VendasDto> vendas;
     private VendasDao vendas_dao;
     
-<<<<<<< HEAD
-    
-    
-=======
->>>>>>> 9ef97759a8d2e8fd5b67398eee912583a4f29b28
     public VendasModelo() {
   
         vendas = new ArrayList<VendasDto>();
@@ -26,15 +21,6 @@ public class VendasModelo {
     public boolean adicionarVenda(VendasDto contato) {
         vendas.add(contato);
         return vendas_dao.adicionarVendas(contato);
-<<<<<<< HEAD
-        
 
-        
-        
-        
-        
-=======
-   
->>>>>>> 9ef97759a8d2e8fd5b67398eee912583a4f29b28
     }
 }
