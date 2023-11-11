@@ -56,11 +56,19 @@ public class VendasControladora {
     	return vendas_modelo.atualizarVendaStatus(status, id_venda);
     }
     
+    public boolean deletarVendas(int id_venda) {
+    	return vendas_modelo.deletarVendas(id_venda);
+    }
     
-    
+    public List<VendasDto> listarVendas() {
+    	return vendas_modelo.listarVendas();
+    }
     
     	
 	// Objetos de visao
+    
+    
+   
 	
 	
 	
