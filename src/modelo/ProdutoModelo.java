@@ -1,13 +1,11 @@
-package controladora;
+package src.modelo;
 
-import java.util.ArrayList;
-import java.util.List;
-public class ProdutoC {
+public class ProdutoModelo {
     private String nome;
     private double valor;
     private int fluxoSaidaProd;
 
-    public ProdutoC(String nome, double valor, int fluxoSaidaProd) {
+    public ProdutoModelo(String nome, double valor, int fluxoSaidaProd) {
         this.nome = nome;
         this.valor = valor;
         this.fluxoSaidaProd = fluxoSaidaProd;
@@ -15,10 +13,15 @@ public class ProdutoC {
 
     public void armazenarDadosProduto() {
         System.out.println("Dados do produto armazenados: " + nome);
-        System.out.println("Teste");
     }
 
     public int getFluxoSaidaProd() {
         return fluxoSaidaProd;
     }
+
+    public int adicionaFluxoSaidaProd(int quantidadeProdutos, int fluxoSaidaProd){
+        fluxoSaidaProd += quantidadeProdutos;
+        return fluxoSaidaProd;
+    }
 }
+

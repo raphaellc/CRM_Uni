@@ -1,29 +1,31 @@
-package controladora;
+package src.modelo;
 
 import java.util.ArrayList;
 import java.util.List;
 
-class RelatorioVendaC {
-    private List<VendaC> dadosVenda;
+class AnaliseVendasModelo {
+    private List<ProdutoModelo> produtos;
 
-    public RelatorioVendaC() {
-        this.dadosVenda = new ArrayList<>();
+    public void AnaliseDeVenda(List<ProdutoModelo> produtos) {
+        this.produtos = produtos;
     }
+    //método que gera o produto mais vendido
+    public ProdutoModelo getProdutoComMaiorFluxoDeSaida() {
+        if (produtos == null || produtos.isEmpty()) {
+            return null;
+        }
 
-    public void adicionarVenda(VendaC venda) {
-        dadosVenda.add(venda);
-    }
+        ProdutoModelo produtoComMaiorFluxo = produtos.get(0);
 
-    public List<VendaC> filtrarConteudo(String vendedor) {
-        List<VendaC> vendasFiltradas = new ArrayList<>();
-        for (VendaC venda : dadosVenda) {
-            if (venda.getVendedor().equals(vendedor)) {
-                vendasFiltradas.add(venda);
+        for (ProdutoModelo produto : produtos) {
+            if (produto.getFluxoSaidaProd() > produtoComMaiorFluxo.getFluxoSaidaProd()) {
+                produtoComMaiorFluxo = produto;
             }
         }
-        return vendasFiltradas;
-    }
 
+        return produtoComMaiorFluxo;
+    }
+}
     public void gerarRelatorioVendas() {
         System.out.println("Relatório de Vendas:");
         for (VendaC venda : dadosVenda) {
@@ -31,7 +33,6 @@ class RelatorioVendaC {
             System.out.println("Cliente: " + venda.getCliente());
             System.out.println("Valor da Venda: " + venda.getValorVenda());
             System.out.println("Quantidade de Produtos: " + venda.getQtdProduto());
-            System.out.println("Período de Tempo de Venda: " + venda.getPeriodoTempoVenda());
             System.out.println("Data de Finalização da Venda: " + venda.getDataFinalizacaoVenda());
             System.out.println("-------------------------");
         }
