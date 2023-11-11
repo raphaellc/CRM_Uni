@@ -25,7 +25,8 @@ class AnaliseVendasModelo {
 
         return produtoComMaiorFluxo;
     }
-}
+}/**
+ arrumar
     public void gerarRelatorioVendas() {
         System.out.println("Relatório de Vendas:");
         for (VendaC venda : dadosVenda) {
@@ -37,4 +38,4 @@ class AnaliseVendasModelo {
             System.out.println("-------------------------");
         }
     }
-}
+}*/
