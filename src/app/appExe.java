@@ -12,6 +12,7 @@ import visoes.VendasVisao;
 public class appExe {
 
 	public static void main(String[] args) {
+		
 		VendasModelo vendasModelo = new VendasModelo();
 		
 		VendasControladora vendasControladora = new VendasControladora(vendasModelo);
