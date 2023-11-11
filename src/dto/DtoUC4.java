@@ -1,4 +1,4 @@
-package src.dto;
+package dto;
 
 public class DtoUC4 {
 }

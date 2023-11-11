@@ -1,4 +1,4 @@
-package src.visao;
+package visao;
 
 public class VisaoUC4 {
 }
