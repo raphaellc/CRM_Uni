@@ -8,7 +8,7 @@ public class VendasDto {
 	private float valor_venda;
 	private String dt_venda;
 	private String status;
-	
+
 	
 	
 	

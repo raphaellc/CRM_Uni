@@ -76,7 +76,7 @@ public class VendasDao {
 		try {
 			PreparedStatement ps = connection.prepareStatement(sql);
 		
-			ps.setFloat(1, id_venda);
+			ps.setInt(1, id_venda);
 
 			ResultSet rs = ps.executeQuery();
 			
@@ -100,7 +100,7 @@ public class VendasDao {
 		}
 		
 		
-	public boolean atualizarVendaStatus(float valor_venda, int id_venda) {
+	public boolean atualizarVendaStatus(String status, int id_venda) {
 		
 		Connection connection = null;
         
@@ -110,7 +110,7 @@ public class VendasDao {
 		try {
 			PreparedStatement ps = connection.prepareStatement(sql);
 		
-			ps.setFloat(1, valor_venda);
+			ps.setString(1, status);
 			ps.setInt(2, id_venda);			
 		
 			return ps.executeUpdate()>0;
