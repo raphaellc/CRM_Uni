@@ -1,23 +1,23 @@
 package src.modelo;
 
-import java.util.ArrayList;
+import src.dto.ProdutoDto;
 import java.util.List;
 
 class AnaliseVendasModelo {
-    private List<ProdutoModelo> produtos;
+    private List<ProdutoDto> lista_de_produtos;
 
-    public void AnaliseDeVenda(List<ProdutoModelo> produtos) {
-        this.produtos = produtos;
+    public void AnaliseDeVenda(List<ProdutoDto> lista_de_produtos) {
+        this.lista_de_produtos = lista_de_produtos;
     }
-    //método que gera o produto mais vendido
-    public ProdutoModelo getProdutoComMaiorFluxoDeSaida() {
-        if (produtos == null || produtos.isEmpty()) {
+    //método que retorna o produto mais vendido
+    public ProdutoDto getProdutoComMaiorFluxoDeSaida() {
+        if (lista_de_produtos == null || lista_de_produtos.isEmpty()) {
             return null;
         }
 
-        ProdutoModelo produtoComMaiorFluxo = produtos.get(0);
+        ProdutoDto produtoComMaiorFluxo = lista_de_produtos.get(0);
 
-        for (ProdutoModelo produto : produtos) {
+        for (ProdutoDto produto : lista_de_produtos) {
             if (produto.getFluxoSaidaProd() > produtoComMaiorFluxo.getFluxoSaidaProd()) {
                 produtoComMaiorFluxo = produto;
             }
@@ -25,17 +25,36 @@ class AnaliseVendasModelo {
 
         return produtoComMaiorFluxo;
     }
-}/**
- arrumar
-    public void gerarRelatorioVendas() {
-        System.out.println("Relatório de Vendas:");
-        for (VendaC venda : dadosVenda) {
-            System.out.println("Vendedor: " + venda.getVendedor());
-            System.out.println("Cliente: " + venda.getCliente());
-            System.out.println("Valor da Venda: " + venda.getValorVenda());
-            System.out.println("Quantidade de Produtos: " + venda.getQtdProduto());
-            System.out.println("Data de Finalização da Venda: " + venda.getDataFinalizacaoVenda());
-            System.out.println("-------------------------");
+
+    //Método para verificar o produto com o maior valor:
+    public ProdutoDto identificaMaiorValor(List<ProdutoDto> lista_de_produtos) {
+        if (lista_de_produtos.isEmpty()) {
+            return null; // Retorna null se a lista estiver vazia
         }
+
+        ProdutoDto produto_maior_valor = lista_de_produtos.get(0);
+
+        for (ProdutoDto produto : lista_de_produtos) {
+            if (produto.getValor() >= produto_maior_valor.getValor()) {
+                produto_maior_valor = produto;
+            }
+        }
+        return produto_maior_valor;
     }
-}*/
+    
+    //Método para verificar o produto com o maior valor:
+    public ProdutoDto identificaMenorValor(List<ProdutoDto> lista_de_produtos) {
+        if (lista_de_produtos.isEmpty()) {
+            return null; // Retorna null se a lista estiver vazia
+        }
+
+        ProdutoDto produto_menor_valor = lista_de_produtos.get(0);
+
+        for (ProdutoDto produto : lista_de_produtos) {
+            if (produto.getValor() <= produto_menor_valor.getValor()) {
+                produto_menor_valor = produto;
+            }
+        }
+        return produto_menor_valor;
+    }
+}
