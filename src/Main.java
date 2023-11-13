@@ -5,25 +5,26 @@ import java.util.List;
 import dao.PessoaDAO;
 import dto.EnderecoDTO;
 import dto.PessoaDTO;
+import modelo.PessoaModelo;
 
 public class Main {
 
     public static void main(String[] args) {
-        mainConsulta();
-//        mainCadastro();
+//        mainConsulta();
+        mainCadastro();
 //        mainDelete();
     }
 
     private static void mainConsulta() {
         final PessoaDAO pessoaDAO = new PessoaDAO();
 
-        final List<PessoaDTO> pessoas = pessoaDAO.consultarTodos();
+        pessoaDAO.deletar(7L);
 
-        System.out.println(pessoas);
+        System.out.println();
     }
 
     private static void mainCadastro() {
-        final PessoaDAO pessoaDAO = new PessoaDAO();
+        final PessoaModelo pessoaModelo = new PessoaModelo();
 
         // Cria Pessoa DTO
         final PessoaDTO pessoa = new PessoaDTO();
@@ -31,7 +32,7 @@ public class Main {
         pessoa.setCelular("5199999-9999");
         pessoa.setId_origem(2L);
         pessoa.setOcupacao("Desenvolvedor Front-End");
-        pessoa.setEmail("fulano@example.com");
+        pessoa.setEmail("fulandddo@example.com");
         pessoa.setDt_nasc(LocalDate.of(2001, 5, 5));
         pessoa.setDt_hr_origem(LocalDateTime.now());
 
@@ -46,9 +47,9 @@ public class Main {
 
         pessoa.setEndereco(endereco);
 
-        final PessoaDTO pessoaInserida = pessoaDAO.criarContato(pessoa);
+        final boolean pessoaInserida = pessoaModelo.cadastrar(pessoa);
 
-        System.out.println("ID da pessoa inserida: " + pessoaInserida);
+        System.out.println(pessoaInserida);
     }
 
     private static void mainDelete() {
