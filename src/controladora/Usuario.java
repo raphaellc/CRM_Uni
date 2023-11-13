@@ -1,8 +1,10 @@
 package src.controladora;
 
+import src.modelo.ProdutoModelo;
+
 public class Usuario {
         private String nome;
-        private List<ProdutoC> comprasUsuario;
+        private List<ProdutoModelo> comprasUsuario;
 
         public Usuario(String nome) {
             this.nome = nome;
@@ -17,17 +19,17 @@ public class Usuario {
             this.nome = nome;
         }
 
-        public List<Produto> getComprasUsuario() {
+        public List<ProdutoModelo> getComprasUsuario() {
             return comprasUsuario;
         }
 
-        public void adicionarProduto(Produto produto) {
+        public void adicionarProduto(ProdutoModelo produto) {
             this.comprasUsuario.add(produto);
         }
 
         public double calcularTotalCompra() {
             double total = 0;
-            for (Produto produto : comprasUsuario) {
+            for (ProdutoModelo produto : comprasUsuario) {
                 total += produto.getValor();
             }
             return total;
