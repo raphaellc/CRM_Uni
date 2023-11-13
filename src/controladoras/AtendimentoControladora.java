@@ -16,14 +16,14 @@ public class AtendimentoControladora {
 
     }
 
-    public void adicionarAtendimento(Atendimento atendimento) {
+    public void adicionarAtendimento(AtendimentoDto atendimento) {
         ;
     }
 
-    public void alterarAtendimento(Atendimento atendimento){
+    public void alterarAtendimento(AtendimentoDto atendimento){
         ;
     }
-    public void removerAtendimento(Atendimento atendimento) {
+    public void removerAtendimento(AtendimentoDto atendimento) {
         ;
     }
 
