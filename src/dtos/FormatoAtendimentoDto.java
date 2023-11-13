@@ -9,19 +9,19 @@ public class FormatoAtendimentoDto {
     }
 
     //Getters e setters
-    public int getId_formato_atendimento() {
+    public int getIdFormatoAtendimento() {
         return id_formato_atendimento;
     }
 
-    public void setId_formato_atendimento(int id_formato_atendimento) {
+    public void setIdFormatoAtendimento(int id_formato_atendimento) {
         this.id_formato_atendimento = id_formato_atendimento;
     }
 
-    public String getNome_formato() {
+    public String getNomeFormato() {
         return nome_formato;
     }
 
-    public void setNome_formato(String nome_formato) {
+    public void setNomeFormato(String nome_formato) {
         this.nome_formato = nome_formato;
     }
 }

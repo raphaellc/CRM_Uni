@@ -10,11 +10,11 @@ public class StatusAtendimentoDto {
 
     //Getter e setters
 
-    public int getId_status_atendimento() {
+    public int getIdStatusAtendimento() {
         return id_status_atendimento;
     }
 
-    public void setId_status_atendimento(int id_status_atendimento) {
+    public void setIdStatusAtendimento(int id_status_atendimento) {
         this.id_status_atendimento = id_status_atendimento;
     }
 

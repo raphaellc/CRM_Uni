@@ -9,35 +9,35 @@ public class ProgressoAtendimentoDto {
     String desc_atualizacao;
     LocalDate data_atualizacao;
 
-    public int getId_caso_atendimento() {
+    public int getIdCasoAtendimento() {
         return id_caso_atendimento;
     }
 
-    public void setId_caso_atendimento(int id_caso_atendimento) {
+    public void setIdCasoAtendimento(int id_caso_atendimento) {
         this.id_caso_atendimento = id_caso_atendimento;
     }
 
-    public int getId_status_caso_atendimento() {
+    public int getIdStatusCasoAtendimento() {
         return id_status_caso_atendimento;
     }
 
-    public void setId_status_caso_atendimento(int id_status_caso_atendimento) {
+    public void setIdStatusCasoAtendimento(int id_status_caso_atendimento) {
         this.id_status_caso_atendimento = id_status_caso_atendimento;
     }
 
-    public String getDesc_atualizacao() {
+    public String getDescAtualizacao() {
         return desc_atualizacao;
     }
 
-    public void setDesc_atualizacao(String desc_atualizacao) {
+    public void setDescAtualizacao(String desc_atualizacao) {
         this.desc_atualizacao = desc_atualizacao;
     }
 
-    public LocalDate getData_atualizacao() {
+    public LocalDate getDataAtualizacao() {
         return data_atualizacao;
     }
 
-    public void setData_atualizacao(LocalDate data_atualizacao) {
+    public void setDataAtualizacao(LocalDate data_atualizacao) {
         this.data_atualizacao = data_atualizacao;
     }
 }
