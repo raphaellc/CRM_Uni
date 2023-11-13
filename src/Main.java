@@ -2,29 +2,32 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.swing.JFrame;
+
 import dao.PessoaDAO;
 import dto.EnderecoDTO;
 import dto.PessoaDTO;
-import modelo.PessoaModelo;
+import visao.TelaCadastroContato;
+
+// TODO: Excluir classe depois da integração com a Main
 
 public class Main {
 
-    public static void main(String[] args) {
-//        mainConsulta();
-        mainCadastro();
-//        mainDelete();
+    public static void main(final String[] args) {
+        final JFrame tela = new TelaCadastroContato("CRMUni");
+        tela.setVisible(true);
     }
 
     private static void mainConsulta() {
         final PessoaDAO pessoaDAO = new PessoaDAO();
 
-        pessoaDAO.deletar(7L);
+        final List<PessoaDTO> pessoas = pessoaDAO.consultarTodos();
 
-        System.out.println();
+        System.out.println(pessoas);
     }
 
     private static void mainCadastro() {
-        final PessoaModelo pessoaModelo = new PessoaModelo();
+        final PessoaDAO pessoaDAO = new PessoaDAO();
 
         // Cria Pessoa DTO
         final PessoaDTO pessoa = new PessoaDTO();
@@ -32,7 +35,7 @@ public class Main {
         pessoa.setCelular("5199999-9999");
         pessoa.setId_origem(2L);
         pessoa.setOcupacao("Desenvolvedor Front-End");
-        pessoa.setEmail("fulandddo@example.com");
+        pessoa.setEmail("fulano@example.com");
         pessoa.setDt_nasc(LocalDate.of(2001, 5, 5));
         pessoa.setDt_hr_origem(LocalDateTime.now());
 
@@ -47,9 +50,9 @@ public class Main {
 
         pessoa.setEndereco(endereco);
 
-        final boolean pessoaInserida = pessoaModelo.cadastrar(pessoa);
+        final PessoaDTO pessoaInserida = pessoaDAO.criarContato(pessoa);
 
-        System.out.println(pessoaInserida);
+        System.out.println("ID da pessoa inserida: " + pessoaInserida);
     }
 
     private static void mainDelete() {

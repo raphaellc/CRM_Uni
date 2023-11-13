@@ -195,6 +195,16 @@ public class PessoaDAO extends BaseDAO {
         });
     }
 
+    public void deletar(final PessoaDTO pessoa) {
+        execute((connection) -> {
+            final PreparedStatement preparedStmt = connection.prepareStatement(DELETAR_PESSOA_ID);
+
+            preparedStmt.setLong(1, pessoa.getId_pessoa());
+
+            preparedStmt.execute();
+        });
+    }
+
     private String resolveTipoPessoa(final String cargo) {
         return isNull(cargo) ? "Contato" : cargo;
     }
