@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
 import src.dto.ProdutoDto;
+import src.dao.Conexao;
 
 public class VendaModelo {
 
