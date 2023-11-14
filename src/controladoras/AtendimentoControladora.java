@@ -16,18 +16,22 @@ public class AtendimentoControladora {
 
     }
 
-    public void adicionarAtendimento(Atendimento atendimento) {
-        ;
+    public boolean adicionarAtendimento(AtendimentoDto atendimento) {
+        atendimentos.add(atendimento);
+        if (atendimento != null){
+            return this.atendimento.adicionarAtendimento(atendimento);
+        }
+        return false;
     }
 
-    public void alterarAtendimento(Atendimento atendimento){
-        ;
+    public void alterarAtendimento(AtendimentoDto atendimento){
+        ; //Implementar alteração de atendimentos.
     }
-    public void removerAtendimento(Atendimento atendimento) {
-        ;
+    public void removerAtendimento(int id_atendimento) {
+        atendimentos.removeIf(atendimento -> atendimento.getIdAtendimento() == id_atendimento);
     }
 
     public List<AtendimentoDto> listarAtendimento(){
-        return atendimentos;
+        return this.atendimento.listarAtendimento();
     }
 }
