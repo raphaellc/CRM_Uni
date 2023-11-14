@@ -12,6 +12,8 @@ public class StatusPessoaDAO {
         this.connection = connection;
     }
 
+    public SP = StatusPessoaDTO;
+
     public List<StatusPessoaDTO> getAllStatusPessoa() {
         List<StatusPessoaDTO> statusPessoas = new ArrayList<>();
         try {
