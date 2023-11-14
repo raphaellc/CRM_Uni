@@ -1,5 +1,7 @@
 package dtos;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class AtendimentoDto {
@@ -8,8 +10,8 @@ public class AtendimentoDto {
     private int idCategoria;
     private int idResponsavel;
     private int idProduto;
-    private Date dtAbertura;
-    private Date dtResolucao;
+    private LocalDate dtAbertura;
+    private LocalDate dtResolucao;
     private String descProblema;
     private String prioridadeCaso;
 
@@ -50,17 +52,11 @@ public class AtendimentoDto {
     public void setIdProduto(int idProduto) {
         this.idProduto = idProduto;
     }
-    public Date getDtAbertura() {
+    public LocalDate getDtAbertura() {
         return dtAbertura;
     }
-    public void setDtAbertura(Date dtAbertura) {
-        this.dtAbertura = dtAbertura;
-    }
-    public Date getDtResolucao() {
+    public LocalDate getDtResolucao() {
         return dtResolucao;
-    }
-    public void setDtResolucao(Date dtResolucao) {
-        this.dtResolucao = dtResolucao;
     }
     public String getDescProblema() {
         return descProblema;
