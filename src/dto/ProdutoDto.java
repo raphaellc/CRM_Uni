@@ -3,7 +3,7 @@ package src.dto;
 public class ProdutoDto {
     private String nome;
     private double valor;
-    private int fluxoSaidaProd;
+    private int fluxo_saida_prod;
 
     public String getNome() {
         return nome;
@@ -22,10 +22,10 @@ public class ProdutoDto {
     }
 
     public int getFluxoSaidaProd() {
-        return fluxoSaidaProd;
+        return fluxo_saida_prod;
     }
 
-    public void setFluxoSaidaProd(int fluxoSaidaProd) {
-        this.fluxoSaidaProd = fluxoSaidaProd;
+    public void setFluxoSaidaProd(int fluxo_saida_prod) {
+        this.fluxo_saida_prod = fluxo_saida_prod;
     }
 }
