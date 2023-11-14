@@ -1,15 +1,6 @@
-package dto;
-
 public class StatusPessoaDTO {
     private int idStatusPessoa;
     private String descricao;
-
-    // Construtores, getters e setters
-
-    public StatusPessoaDTO(int idStatusPessoa, String descricao) {
-        this.idStatusPessoa = idStatusPessoa;
-        this.descricao = descricao;
-    }
 
     public int getIdStatusPessoa() {
         return idStatusPessoa;
@@ -25,5 +16,13 @@ public class StatusPessoaDTO {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    @Override
+    public String toString() {
+        return "StatusPessoaDTO{" +
+                "idStatusPessoa=" + idStatusPessoa +
+                ", descricao='" + descricao + '\'' +
+                '}';
     }
 }
