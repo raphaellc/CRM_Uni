@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.swing.JFrame;
 
+import controladora.PessoaControladora;
 import dao.PessoaDAO;
 import dto.EnderecoDTO;
 import dto.PessoaDTO;
@@ -14,7 +15,8 @@ import visao.TelaCadastroContato;
 public class Main {
 
     public static void main(final String[] args) {
-        final JFrame tela = new TelaCadastroContato("CRMUni");
+        final PessoaControladora controladora = new PessoaControladora();
+        final JFrame tela = new TelaCadastroContato("CRMUni", controladora);
         tela.setVisible(true);
     }
 
@@ -56,9 +58,9 @@ public class Main {
     }
 
     private static void mainDelete() {
-      final PessoaDAO pessoaDAO = new PessoaDAO();
+        final PessoaDAO pessoaDAO = new PessoaDAO();
 
-      pessoaDAO.deletar(8L);
+        pessoaDAO.deletar(8L);
     }
 
 }

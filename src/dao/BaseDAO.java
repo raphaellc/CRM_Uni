@@ -21,8 +21,8 @@ public abstract class BaseDAO {
             final Connection connection = conexao.abrir();
             return task.apply(connection);
         } catch (final Exception exception) {
-            System.out.println("[ERRO] Problema para executar tarefa de banco: " + exception.getMessage());
-            exception.printStackTrace();
+            System.out.printf("[ERRO] Problema para executar tarefa de banco: %s. "
+                + "Ira ser retornado nulo\n", exception.getMessage());
         } finally {
             this.conexao.fechar(this.resultado);
             this.conexao.fechar();

@@ -20,6 +20,11 @@ public class ConexaoContext {
         return conexoes.stream()
             .filter(conexao -> conexao.getNomeBanco().equals(nomeBanco))
             .findFirst()
-            .orElse(new ConexaoMySQL());
+            .orElseGet(() -> {
+                System.out.printf("[WARNING] Conexão ao banco: %s não encontrada. "
+                    + "Usando conexão padrão MySQL\n", nomeBanco);
+
+                return new ConexaoMySQL();
+            });
     }
 }
