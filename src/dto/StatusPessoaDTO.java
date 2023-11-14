@@ -1,3 +1,5 @@
+package dto;
+
 public class StatusPessoaDTO {
     private int idStatusPessoa;
     private String descricao;
