@@ -15,15 +15,15 @@ class AnaliseVendasModelo {
             return null;
         }
 
-        ProdutoDto produtoComMaiorFluxo = lista_de_produtos.get(0);
+        ProdutoDto produto_com_maior_fluxo = lista_de_produtos.get(0);
 
         for (ProdutoDto produto : lista_de_produtos) {
-            if (produto.getFluxoSaidaProd() > produtoComMaiorFluxo.getFluxoSaidaProd()) {
-                produtoComMaiorFluxo = produto;
+            if (produto.getFluxoSaidaProd() > produto_com_maior_fluxo.getFluxoSaidaProd()) {
+                produto_com_maior_fluxo = produto;
             }
         }
 
-        return produtoComMaiorFluxo;
+        return produto_com_maior_fluxo;
     }
 
     //Método para verificar o produto com o maior valor:
@@ -42,7 +42,7 @@ class AnaliseVendasModelo {
         return produto_maior_valor;
     }
     
-    //Método para verificar o produto com o maior valor:
+    //Método para verificar o produto com o menor valor:
     public ProdutoDto identificaMenorValor(List<ProdutoDto> lista_de_produtos) {
         if (lista_de_produtos.isEmpty()) {
             return null; // Retorna null se a lista estiver vazia

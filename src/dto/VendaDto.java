@@ -7,10 +7,9 @@ public class VendaDto {
     private int id_vendedor;
     private int id_cliente;
     private double valor_venda;
-    private double desconto;
-    private boolean fechada;
-    private Date dataFinalizacao;
-    private int quantidadeProdutos;
+    private String status;
+    private Date data_venda;
+    private int quantidade_produtos;
 
 
     public VendaDto(){
@@ -49,36 +48,28 @@ public class VendaDto {
         this.valor_venda = valor_venda;
     }
 
-    public double getDesconto() {
-        return desconto;
+    public String getStatus() {
+        return status;
     }
 
-    public void setDesconto(double desconto) {
-        this.desconto = desconto;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
-    public boolean isFechada() {
-        return fechada;
+    public Date getData_venda() {
+        return data_venda;
     }
 
-    public void setFechada(boolean fechada) {
-        this.fechada = fechada;
+    public void setData_venda(Date data_venda) {
+        this.data_venda = data_venda;
     }
 
-    public Date getDataFinalizacao() {
-        return dataFinalizacao;
+    public int getQuantidade_produtos() {
+        return quantidade_produtos;
     }
 
-    public void setDataFinalizacao(Date dataFinalizacao) {
-        this.dataFinalizacao = dataFinalizacao;
-    }
-
-    public int getQuantidadeProdutos() {
-        return quantidadeProdutos;
-    }
-
-    public void setQuantidadeProdutos(int quantidadeProdutos) {
-        this.quantidadeProdutos = quantidadeProdutos;
+    public void setQuantidade_produtos(int quantidade_produtos) {
+        this.quantidade_produtos = quantidade_produtos;
     }
 
 }
