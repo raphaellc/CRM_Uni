@@ -1,7 +1,7 @@
 package src.dto;
 import java.util.Date;
 
-public class DtoRelatorioAtendimento {
+public class RelatorioAtendimentoDto {
     private String obersacoes;
     private float valor_resultante;
     private String formato_atendimento;
