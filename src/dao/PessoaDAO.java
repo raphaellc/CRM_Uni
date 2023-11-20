@@ -1,9 +1,6 @@
 package dao;
 
-import static dao.PessoaQuery.CONSULTAR_TODAS_PESSOAS;
-import static dao.PessoaQuery.CRIAR_ENDERECO;
-import static dao.PessoaQuery.CRIAR_PESSOA;
-import static dao.PessoaQuery.DELETAR_PESSOA_ID;
+import static dao.PessoaQuery.*;
 import static java.sql.Statement.RETURN_GENERATED_KEYS;
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
@@ -57,8 +54,7 @@ public class PessoaDAO extends BaseDAO {
                 pessoa.setOcupacao(resultado.getString("ocupacao"));
                 pessoa.setId_origem(resultado.getLong("id_origem"));
                 pessoa.setDt_hr_origem(resultado.getObject("data_hora_origem", LocalDateTime.class));
-                pessoa.setTipo_pessoa(resovleTipoPessoa(pessoa.getCargo()));
-
+                pessoa.setTipo_pessoa(resolveTipoPessoa(pessoa.getCargo()));
                 final EnderecoDTO endereco = new EnderecoDTO();
                 endereco.setId_endereco(resultado.getLong("id_endereco"));
                 endereco.setLogradouro(resultado.getString("logradouro"));
@@ -136,6 +132,45 @@ public class PessoaDAO extends BaseDAO {
         });
     }
 
+    public PessoaDTO consultarID(final Long ID){
+        return execute((connection) -> {
+            final Statement statement = connection.createStatement();
+            final PreparedStatement pessoaStmt = connection.prepareStatement(CONSULTAR_PESSOA_ID);
+
+            pessoaStmt.setLong(1, ID);
+
+            this.resultado = pessoaStmt.executeQuery();
+
+            final PessoaDTO pessoa = new PessoaDTO();
+
+            while (resultado.next()) {
+                pessoa.setId_pessoa(resultado.getLong("id_pessoa"));
+                pessoa.setNome(resultado.getString("nome"));
+                pessoa.setDt_nasc(resultado.getObject("data_nascimento", LocalDate.class));
+                pessoa.setCelular(resultado.getString("celular"));
+                pessoa.setEmail(resultado.getString("email"));
+                pessoa.setSetor(resultado.getString("setor"));
+                pessoa.setCargo(resultado.getString("cargo"));
+                pessoa.setOcupacao(resultado.getString("ocupacao"));
+                pessoa.setId_origem(resultado.getLong("id_origem"));
+                pessoa.setDt_hr_origem(resultado.getObject("data_hora_origem", LocalDateTime.class));
+                pessoa.setTipo_pessoa(resolveTipoPessoa(pessoa.getCargo()));
+                final EnderecoDTO endereco = new EnderecoDTO();
+                endereco.setId_endereco(resultado.getLong("id_endereco"));
+                endereco.setLogradouro(resultado.getString("logradouro"));
+                endereco.setNumero(resultado.getString("numero"));
+                endereco.setComplemento(resultado.getString("complemento"));
+                endereco.setBairro(resultado.getString("bairro"));
+                endereco.setCidade(resultado.getString("cidade"));
+                endereco.setEstado(resultado.getString("estado"));
+                endereco.setCep(resultado.getString("cep"));
+                pessoa.setEndereco(endereco);
+            }
+
+            return pessoa;
+        });
+    }
+
     public void deletar(final Long id) {
         execute((connection) -> {
             final PreparedStatement preparedStmt = connection.prepareStatement(DELETAR_PESSOA_ID);
@@ -143,6 +178,20 @@ public class PessoaDAO extends BaseDAO {
             preparedStmt.setLong(1, id);
 
             preparedStmt.execute();
+        });
+    }
+
+    public boolean existeEmail(final String email){
+        return execute((connection) -> {
+            final Statement statement = connection.createStatement();
+
+            final PreparedStatement pessoaStmt = connection.prepareStatement(PessoaQuery.CONSULTAR_EMAIL);
+
+            pessoaStmt.setString(1, email);
+
+            this.resultado = pessoaStmt.executeQuery();
+
+            return this.resultado.next();
         });
     }
 
@@ -156,7 +205,7 @@ public class PessoaDAO extends BaseDAO {
         });
     }
 
-    private String resovleTipoPessoa(final String cargo) {
+    private String resolveTipoPessoa(final String cargo) {
         return isNull(cargo) ? "Contato" : cargo;
     }
 }
