@@ -3,7 +3,7 @@ package src.modelo;
 import src.dto.ProdutoDto;
 import java.util.List;
 
-class AnaliseVendasModelo {
+public class AnaliseVendasModelo {
     private List<ProdutoDto> lista_de_produtos;
 
     public void AnaliseDeVenda(List<ProdutoDto> lista_de_produtos) {
