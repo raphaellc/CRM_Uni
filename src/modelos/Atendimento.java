@@ -1,72 +1,29 @@
 package modelos;
 
-import java.util.Date;
+import daos.AtendimentoDao;
+import daos.AtendimentoConexao;
+import dtos.AtendimentoDto;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Atendimento {
-    int idAtendimento;
-    int idPessoa;
-    int idCategoria;
-    int idResponsavel;
-    int idProduto;
-    Date dtAbertura;
-    Date dtResolucao;
-    String descProblema;
-    String prioridadeCaso;
+    private List<AtendimentoDto> atendimentos;
+    private AtendimentoDao atendimentoDao;
+    private AtendimentoConexao conexao;
 
-    //Getters e Setters
+    public Atendimento() {
+        conexao = new AtendimentoConexao();
+        atendimentoDao = new AtendimentoDao(conexao);
+        atendimentos = new ArrayList<>();
+    }
 
-    public int getIdAtendimento() {
-        return idAtendimento;
+    public boolean adicionarAtendimento(AtendimentoDto atendimentoDto) {
+        atendimentos.add(atendimentoDto);
+        return atendimentoDao.adicionarAtendimento(atendimentoDto);
     }
-    public void setIdAtendimento(int idAtendimento) {
-        this.idAtendimento = idAtendimento;
-    }
-    public int getIdPessoa() {
-        return idPessoa;
-    }
-    public void setIdPessoa(int idPessoa) {
-        this.idPessoa = idPessoa;
-    }
-    public int getIdCategoria() {
-        return idCategoria;
-    }
-    public void setIdCategoria(int idCategoria) {
-        this.idCategoria = idCategoria;
-    }
-    public int getIdResponsavel() {
-        return idResponsavel;
-    }
-    public void setIdResponsavel(int idResponsavel) {
-        this.idResponsavel = idResponsavel;
-    }
-    public int getIdProduto() {
-        return idProduto;
-    }
-    public void setIdProduto(int idProduto) {
-        this.idProduto = idProduto;
-    }
-    public Date getDtAbertura() {
-        return dtAbertura;
-    }
-    public void setDtAbertura(Date dtAbertura) {
-        this.dtAbertura = dtAbertura;
-    }
-    public Date getDtResolucao() {
-        return dtResolucao;
-    }
-    public void setDtResolucao(Date dtResolucao) {
-        this.dtResolucao = dtResolucao;
-    }
-    public String getDescProblema() {
-        return descProblema;
-    }
-    public void setDescProblema(String descProblema) {
-        this.descProblema = descProblema;
-    }
-    public String getPrioridadeCaso() {
-        return prioridadeCaso;
-    }
-    public void setPrioridadeCaso(String prioridadeCaso) {
-        this.prioridadeCaso = prioridadeCaso;
+
+    public List<AtendimentoDto> listarAtendimentos() {
+        return atendimentoDao.listarAtendimento();
     }
 }
