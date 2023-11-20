@@ -1,17 +1,17 @@
 package src.controladora;
 
 import java.util.List;
-import src.dto.VendaDto;
+import src.dto.AnaliseVendasDto;
 
 public class AnaliseVendasC {
 
-    private List<VendaDto> vendas;
-    private VendaDto venda;
+    private List<AnaliseVendasDto> vendas;
+    private AnaliseVendasDto venda;
     public AnaliseVendasC() {
 
     }
 
-    public List<VendaDto> listarVendas() {
+    public List<AnaliseVendasDto> listarVendas() {
         return this.listarVendas();
     }
 }

@@ -2,7 +2,7 @@ package src.dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-public class RelatorioAtendimentoDao {
+public class AnaliseAtendimentoDao {
 
     public static void main(String[] args) {
         conectar();
