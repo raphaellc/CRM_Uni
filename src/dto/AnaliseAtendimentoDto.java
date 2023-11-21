@@ -12,6 +12,8 @@ public class AnaliseAtendimentoDto {
     private String responsavel;
     private int duracao_atendimento;
 
+    private boolean venda_fechada;
+
     public String getObersacoes() {
         return obersacoes;
     }
@@ -66,5 +68,13 @@ public class AnaliseAtendimentoDto {
 
     public void setDuracao_atendimento(int duracao_atendimento) {
         this.duracao_atendimento = duracao_atendimento;
+    }
+
+    public boolean isVenda_fechada() {
+        return venda_fechada;
+    }
+
+    public void setVenda_fechada(boolean venda_fechada) {
+        this.venda_fechada = venda_fechada;
     }
 }

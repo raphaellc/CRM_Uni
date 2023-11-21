@@ -6,6 +6,7 @@ public class AnaliseVendasDto {
     private int id_venda;
     private int id_vendedor;
     private int id_cliente;
+    private int id_produto;
     private double valor_venda;
     private String status;
     private Date data_venda;
@@ -40,6 +41,14 @@ public class AnaliseVendasDto {
 
     public void setId_cliente(int id_cliente) {
         this.id_cliente = id_cliente;
+    }
+
+    public int getId_produto() {
+        return id_produto;
+    }
+
+    public void setId_produto(int id_produto) {
+        this.id_produto = id_produto;
     }
 
     public double getValor_venda() {
