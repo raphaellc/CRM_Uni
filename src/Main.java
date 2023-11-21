@@ -9,6 +9,7 @@ import dao.PessoaDAO;
 import dto.EnderecoDTO;
 import dto.PessoaDTO;
 import visao.TelaCadastroContato;
+import visao.TelaListagemContato;
 
 // TODO: Excluir classe depois da integração com a Main
 

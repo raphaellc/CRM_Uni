@@ -117,18 +117,6 @@ public class PessoaDTO {
 
     @Override
     public String toString() {
-        return "PessoaDTO {" +
-            "id_pessoa=" + id_pessoa +
-            ", nome='" + nome + '\'' +
-            ", endereco=" + endereco +
-            ", dt_nasc=" + dt_nasc +
-            ", celular='" + celular + '\'' +
-            ", email='" + email + '\'' +
-            ", setor='" + setor + '\'' +
-            ", ocupacao='" + ocupacao + '\'' +
-            ", id_origem='" + id_origem + '\'' +
-            ", dt_hr_origem=" + dt_hr_origem +
-            ", tipo_pessoa='" + tipo_pessoa + '\'' +
-            '}';
+        return "Nome: \t" + getNome() + "\t Ocupação: \t" + getOcupacao();
     }
 }

@@ -37,6 +37,10 @@ public class PessoaControladora {
         return modelo.cadastrar(pessoaDTO);
     }
 
+    public void deletar(final PessoaDTO pessoaDTO) {
+        modelo.deletar(pessoaDTO.getId_pessoa());
+    }
+
     private boolean validarCadastroPessoa(PessoaDTO pessoaDTO) {
         if (isNull(pessoaDTO)) {
             return false;
