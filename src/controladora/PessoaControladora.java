@@ -11,6 +11,9 @@ import dto.EnderecoDTO;
 import dto.PessoaDTO;
 import modelo.PessoaModelo;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class PessoaControladora {
 
     private final PessoaModelo modelo;
@@ -38,13 +41,15 @@ public class PessoaControladora {
         if (isNull(pessoaDTO)) {
             return false;
         }
+
+        if (!isEmail(pessoaDTO.getEmail())) {
+            return false;
+        }
+
         if (isEmptyString(pessoaDTO.getNome())) {
             return false;
         }
         if (isNull(pessoaDTO.getDt_nasc())) {
-            return false;
-        }
-        if (isEmptyString(pessoaDTO.getEmail())) {
             return false;
         }
         if (isEmptyString(pessoaDTO.getCelular())) {
@@ -82,5 +87,24 @@ public class PessoaControladora {
         return true;
     }
 
+    private boolean isEmail(String email){
+
+        if(isEmptyString(email)){
+            return false;
+        }
+
+        String emailRegex = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
+
+        // Compile the regex pattern
+        Pattern pattern = Pattern.compile(emailRegex);
+
+        Matcher matcher = pattern.matcher(email);
+
+        if (!matcher.matches()) {
+            return false;
+        }
+
+        return true;
+    }
 
 }
