@@ -95,13 +95,13 @@ public class AtendimentoDao {
         atendimentoDto.setIdCategoria(3);
         atendimentoDto.setPrioridadeCaso(1);
 
-        // Criando uma instância de AtendimentoConexao (ou use a que você já tem)
+        // Criando uma instância de AtendimentoConexao
         AtendimentoConexao atendimentoConexao = new AtendimentoConexao();
 
         // Criando uma instância de AtendimentoDao, passando a instância de AtendimentoConexao
         AtendimentoDao atendimentoDao = new AtendimentoDao(atendimentoConexao);
 
-        // Chame o método adicionarAtendimento e imprima o resultado
+        // Chamando o método adicionarAtendimento e imprimindo o resultado
         boolean sucesso = atendimentoDao.adicionarAtendimento(atendimentoDto);
         if (sucesso) {
             System.out.println("Atendimento adicionado com sucesso!");
