@@ -1,24 +1,24 @@
 package src.modelo;
 
-import src.dto.ProdutoDto;
+import src.dto.AnaliseVendasDto;
 import java.util.List;
 
 public class AnaliseVendasModelo {
-    private List<ProdutoDto> lista_de_produtos;
+    private List<AnaliseVendasDto> lista_de_produtos;
 
-    public void AnaliseDeVenda(List<ProdutoDto> lista_de_produtos) {
+    public void AnaliseDeVenda(List<AnaliseVendasDto> lista_de_produtos) {
         this.lista_de_produtos = lista_de_produtos;
     }
     //método que retorna o produto mais vendido
-    public ProdutoDto getProdutoComMaiorFluxoDeSaida() {
+    public AnaliseVendasDto identificaProdutoMaisVendido() {
         if (lista_de_produtos == null || lista_de_produtos.isEmpty()) {
             return null;
         }
 
-        ProdutoDto produto_com_maior_fluxo = lista_de_produtos.get(0);
+        AnaliseVendasDto produto_com_maior_fluxo = lista_de_produtos.get(0);
 
-        for (ProdutoDto produto : lista_de_produtos) {
-            if (produto.getFluxoSaidaProd() > produto_com_maior_fluxo.getFluxoSaidaProd()) {
+        for (AnaliseVendasDto produto : lista_de_produtos) {
+            if (produto.getFluxoSaidaProduto() > produto_com_maior_fluxo.getFluxoSaidaProduto()) {
                 produto_com_maior_fluxo = produto;
             }
         }
@@ -27,15 +27,15 @@ public class AnaliseVendasModelo {
     }
 
     //Método para verificar o produto com o maior valor:
-    public ProdutoDto identificaMaiorValor(List<ProdutoDto> lista_de_produtos) {
+    public AnaliseVendasDto identificaProdutoMaiorValor(List<AnaliseVendasDto> lista_de_produtos) {
         if (lista_de_produtos.isEmpty()) {
             return null; // Retorna null se a lista estiver vazia
         }
 
-        ProdutoDto produto_maior_valor = lista_de_produtos.get(0);
+        AnaliseVendasDto produto_maior_valor = lista_de_produtos.get(0);
 
-        for (ProdutoDto produto : lista_de_produtos) {
-            if (produto.getValor() >= produto_maior_valor.getValor()) {
+        for (AnaliseVendasDto produto : lista_de_produtos) {
+            if (produto.getValorProduto() >= produto_maior_valor.getValorProduto()) {
                 produto_maior_valor = produto;
             }
         }
@@ -43,15 +43,15 @@ public class AnaliseVendasModelo {
     }
     
     //Método para verificar o produto com o menor valor:
-    public ProdutoDto identificaMenorValor(List<ProdutoDto> lista_de_produtos) {
+    public AnaliseVendasDto identificaProdutoMenorValor(List<AnaliseVendasDto> lista_de_produtos) {
         if (lista_de_produtos.isEmpty()) {
             return null; // Retorna null se a lista estiver vazia
         }
 
-        ProdutoDto produto_menor_valor = lista_de_produtos.get(0);
+        AnaliseVendasDto produto_menor_valor = lista_de_produtos.get(0);
 
-        for (ProdutoDto produto : lista_de_produtos) {
-            if (produto.getValor() <= produto_menor_valor.getValor()) {
+        for (AnaliseVendasDto produto : lista_de_produtos) {
+            if (produto.getValorProduto() <= produto_menor_valor.getValorProduto()) {
                 produto_menor_valor = produto;
             }
         }
