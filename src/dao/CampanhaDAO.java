@@ -1,3 +1,7 @@
+package dao;
+
+import dto.CampanhaDTO;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -6,15 +10,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CampanhaDAO {
-    private Connection connection;
+    private final Connection connection;
 
     public CampanhaDAO(Connection connection) {
         this.connection = connection;
     }
 
-    public CampanhaDAO() {
-        this.connection = Conexao.conectar(); // Use sua classe de conexão personalizada
-    }
+
 
     public void inserirCampanha(CampanhaDTO campanha) {
         String query = "INSERT INTO campanha (nome, dt_inicio, dt_fim) VALUES (?, ?, ?)";

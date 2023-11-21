@@ -12,17 +12,15 @@ public class StatusPessoaDAO {
         this.connection = connection;
     }
 
-    public SP = StatusPessoaDTO;
-
     public List<StatusPessoaDTO> getAllStatusPessoa() {
-        List<StatusPessoaDTO> statusPessoas = new ArrayList<>();
+        List<StatusPessoaDTO> statusPessoas = new ArrayList<StatusPessoaDTO>();
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM status_pessoa");
             while (resultSet.next()) {
                 int idStatusPessoa = resultSet.getInt("id_status_pessoa");
                 String descricao = resultSet.getString("descricao");
-                StatusPessoaDTO statusPessoa = new StatusPessoaDTO(idStatusPessoa, descricao);
+                StatusPessoaDTO statusPessoa = StatusPessoaDTO(statusPessoas, descricao);
                 statusPessoas.add(statusPessoa);
             }
         } catch (SQLException e) {
@@ -38,7 +36,7 @@ public class StatusPessoaDAO {
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 String descricao = resultSet.getString("descricao");
-                return new StatusPessoaDTO(idStatusPessoa, descricao);
+                return new IdStatusPessoa();
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -56,7 +54,7 @@ public class StatusPessoaDAO {
         }
     }
 
-    public void updateStatusPessoa(StatusPessoaDTO statusPessoa) {
+    public void updateStatusPessoa(@org.jetbrains.annotations.NotNull StatusPessoaDTO statusPessoa) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE status_pessoa SET descricao = ? WHERE id_status_pessoa = ?");
             preparedStatement.setString(1, statusPessoa.getDescricao());
