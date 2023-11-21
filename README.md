@@ -47,20 +47,19 @@ https://github.com/raphaellc/CRM_EM.git
 ```
 - Tabela pessoas
 ```
-  CREATE TABLE `pessoa` (
-  `id_pessoa` int NOT NULL AUTO_INCREMENT,
+  CREATE TABLE `pessoas` (
+  `id_pessoas` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_la_0900_ai_ci NOT NULL,
-  `data_nascimento` date NOT NULL,
+  `dt_nasc` date DEFAULT NULL,
   `celular` varchar(12) CHARACTER SET utf8mb4 COLLATE utf8mb4_la_0900_ai_ci DEFAULT NULL,
   `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_la_0900_ai_ci DEFAULT NULL,
-  `id_setor` int DEFAULT NULL,
-  `id_cargo` int DEFAULT NULL,
+  `id_setor` int NOT NULL,
   `ocupacao` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_la_0900_ai_ci DEFAULT NULL,
   `id_origem` int DEFAULT NULL,
-  `data_hora_origem` datetime DEFAULT NULL,
-  PRIMARY KEY (`id_pessoa`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_la_0900_ai_ci;
-
+  `dt_hr_origem` datetime DEFAULT NULL,
+  `id_tipo_pessoa` int NOT NULL,
+  PRIMARY KEY (`id_pessoas`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_la_0900_ai_ci
 ```
 - Tabela atendimento
 ```
