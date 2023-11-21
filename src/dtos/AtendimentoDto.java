@@ -92,5 +92,16 @@ public class AtendimentoDto {
         this.prioridadeCaso = prioridadeCaso;
     }
 
+    public String toString() {
+        return "AtendimentoDto{" +
+                "idAtendimento=" + idAtendimento +
+                ", idResponsavel=" + idResponsavel +
+                ", dtAbertura=" + dtAbertura +
+                ", dtResolucao=" + dtResolucao +
+                ", descProblema='" + descProblema + '\'' +
+                ", idCategoria=" + idCategoria +
+                ", prioridadeCaso=" + prioridadeCaso +
+                '}';
+    }
 
 }
