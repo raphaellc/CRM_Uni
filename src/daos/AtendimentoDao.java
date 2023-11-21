@@ -3,7 +3,13 @@ package daos;
 import dtos.*;
 import modelos.Atendimento;
 import daos.AtendimentoConexao;
-
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Date; // Importe a classe Date correta
+import java.time.LocalDate; // Importe a classe LocalDate
+import java.util.ArrayList;
+import java.util.List;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +33,7 @@ public class AtendimentoDao {
         try {
             connection = this.con.conectar(); // Obtém a conexão usando a classe Conexao
 
-            String sql = "INSERT INTO crmem.pessoas (id_pessoa, id_pessoa_responsavel, dt_abertura, dt_resolucao, desc_problema, id_categoria, id_prioridadege) " +
+            String sql = "INSERT INTO crmuni.atendimento (id_pessoa, id_pessoa_responsavel, dt_abertura, dt_resolucao, desc_problema, id_categoria, id_prioridade) " +
                     "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
             preparedStatement = connection.prepareStatement(sql);
@@ -38,7 +44,7 @@ public class AtendimentoDao {
             preparedStatement.setDate(4, Date.valueOf(atendimentoDto.getDtResolucao()));
             preparedStatement.setString(5, atendimentoDto.getDescProblema());
             preparedStatement.setInt(6, atendimentoDto.getIdCategoria());
-            preparedStatement.setString(7, atendimentoDto.getPrioridadeCaso());
+            preparedStatement.setInt(7, atendimentoDto.getPrioridadeCaso());
 
             // Definindo os atributos restantes da mesma maneira
 
@@ -79,6 +85,45 @@ public class AtendimentoDao {
     public static void main(String[] args) {
         //testando a conexão com o banco de dados
         Connection conexao = AtendimentoConexao.conectar();
+
+        AtendimentoDto atendimentoDto = new AtendimentoDto();
+        atendimentoDto.setIdAtendimento(1);
+        atendimentoDto.setIdResponsavel(2);
+        atendimentoDto.setDtAbertura(LocalDate.now());
+        atendimentoDto.setDtResolucao(LocalDate.now().plusDays(1));
+        atendimentoDto.setDescProblema("Problema de teste");
+        atendimentoDto.setIdCategoria(3);
+        atendimentoDto.setPrioridadeCaso(1);
+
+        // Criando uma instância de AtendimentoConexao (ou use a que você já tem)
+        AtendimentoConexao atendimentoConexao = new AtendimentoConexao();
+
+        // Criando uma instância de AtendimentoDao, passando a instância de AtendimentoConexao
+        AtendimentoDao atendimentoDao = new AtendimentoDao(atendimentoConexao);
+
+        // Chame o método adicionarAtendimento e imprima o resultado
+        boolean sucesso = atendimentoDao.adicionarAtendimento(atendimentoDto);
+        if (sucesso) {
+            System.out.println("Atendimento adicionado com sucesso!");
+        } else {
+            System.out.println("Falha ao adicionar o atendimento.");
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         AtendimentoConexao.fecharConexao(conexao);
     }
 }

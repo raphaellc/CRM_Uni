@@ -32,6 +32,6 @@ public class AtendimentoControladora {
     }
 
     public List<AtendimentoDto> listarAtendimento(){
-        return this.atendimento.listarAtendimento();
+        return this.atendimento.listarAtendimentos();
     }
 }

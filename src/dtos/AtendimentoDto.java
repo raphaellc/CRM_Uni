@@ -1,8 +1,8 @@
 package dtos;
 
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 public class AtendimentoDto {
     private int idAtendimento;
@@ -13,7 +13,7 @@ public class AtendimentoDto {
     private LocalDate dtAbertura;
     private LocalDate dtResolucao;
     private String descProblema;
-    private String prioridadeCaso;
+    private int prioridadeCaso;
 
     //Construtor
 
@@ -55,8 +55,14 @@ public class AtendimentoDto {
     public LocalDate getDtAbertura() {
         return dtAbertura;
     }
+    public void setDtAbertura(LocalDate dtAbertura) {
+        this.dtAbertura = dtAbertura;
+    }
     public LocalDate getDtResolucao() {
         return dtResolucao;
+    }
+    public void setDtResolucao(LocalDate dtResolucao) {
+        this.dtResolucao = dtResolucao;
     }
     public String getDescProblema() {
         return descProblema;
@@ -64,10 +70,27 @@ public class AtendimentoDto {
     public void setDescProblema(String descProblema) {
         this.descProblema = descProblema;
     }
-    public String getPrioridadeCaso() {
+    public int getPrioridadeCaso() {
         return prioridadeCaso;
     }
-    public void setPrioridadeCaso(String prioridadeCaso) {
+
+    public String getPrioridadeCasoString() {
+        switch (prioridadeCaso) {
+            case 1:
+                return "Alta";
+            case 2:
+                return "Média";
+            case 3:
+                return "Baixa";
+            default:
+                throw new IllegalArgumentException("Prioridade desconhecida: " + prioridadeCaso);
+        }
+    }
+
+    // Mapeia prioridadeCaso para um valor inteiro
+    public void setPrioridadeCaso(int prioridadeCaso) {
         this.prioridadeCaso = prioridadeCaso;
     }
+
+
 }
