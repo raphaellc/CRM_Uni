@@ -48,7 +48,8 @@ public class TelaCadastroContato extends JFrame {
     private final List<JTextField> enderecoInputs;
 
     // Botões
-    private JButton cadastrarButton;
+    private JButton botaoCadastrar;
+    private JButton botaoListar;
 
     public TelaCadastroContato(final String nomeAplicacao,
         final PessoaControladora controladora) {
@@ -64,7 +65,13 @@ public class TelaCadastroContato extends JFrame {
         this.configurarPadding(asList(nomeInput, ocupacaoInput, celularInput, dataNascInput, emailInput));
         this.configurarPaddingContainers(asList(enderecoCabecalho, contatoSection));
 
-        cadastrarButton.addActionListener(event -> {
+        botaoListar.addActionListener(event -> {
+            final JFrame telaListagem = new TelaListagemContato(nomeAplicacao, controladora, this);
+            telaListagem.setVisible(true);
+            this.setVisible(false);
+        });
+
+        botaoCadastrar.addActionListener(event -> {
             final PessoaDTO pessoaDTO = new PessoaDTO();
             pessoaDTO.setNome(nomeInput.getText());
             pessoaDTO.setOcupacao(ocupacaoInput.getText());
@@ -94,7 +101,7 @@ public class TelaCadastroContato extends JFrame {
                 JOptionPane.showMessageDialog(this, "Não foi possível realizar o cadastro =(");
             }
 
-            // clear(todosInputs);
+             clear(todosInputs);
         });
 
     }
