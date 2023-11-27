@@ -27,8 +27,9 @@ public class AtendimentoControladora {
     public void alterarAtendimento(AtendimentoDto atendimento){
         ; //Implementar alteração de atendimentos.
     }
-    public void removerAtendimento(int id_atendimento) {
+    public boolean removerAtendimento(int id_atendimento) {
         atendimentos.removeIf(atendimento -> atendimento.getIdAtendimento() == id_atendimento);
+        return this.atendimento.removerAtendimento(id_atendimento);
     }
 
     public List<AtendimentoDto> listarAtendimento(){

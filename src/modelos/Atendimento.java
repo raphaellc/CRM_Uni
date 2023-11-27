@@ -27,3 +27,8 @@ public class Atendimento {
         return atendimentoDao.listarAtendimento();
     }
 }
+
+    public boolean removerAtendimento(int id_atendimento){
+    return atendimentoDao.removerAtendimento(id_atendimento);
+    }
+}
