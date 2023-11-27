@@ -2,6 +2,7 @@ package src.dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import src.dto.AnaliseVendasDto;
 
 public class Conexao {
     private Connection con;

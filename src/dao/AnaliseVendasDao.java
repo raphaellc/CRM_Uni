@@ -13,23 +13,40 @@ public class AnaliseVendasDao {
     public AnaliseVendasDao(Conexao con) {
         this.con = con;
     }
+/**
+    public void boolean identificaProdutoMaiorValor(AnaliseVendasDto analiseVendasDto) {
 
-    public boolean identificaProdutoMaiorValor(AnaliseVendasDto analiseVendasDto) {
+         try {
+         connection = this.con.conectar();
+         String sql = "INSERT INTO analiseVendas VALUES (?, ?, ?, ?, ?)"; //teste
+         PreparedStatement ps = connection.prepareStatement(sql);
 
+         ps.setInt(1, analiseVendasDto.getId_venda());
+         ps.setInt(2, analiseVendasDto.getId_produto());
+         ps.setDouble(3, analiseVendasDto.getValorProduto());
 
-        try {
-            connection = this.con.conectar();
+         } catch{
 
-            String sql = "INSERT INTO analiseVendas VALUES (?, ?, ?, ?, ?)"; //teste
-            PreparedStatement ps = connection.prepareStatement(sql);
+         }
+        System.out.println("Aqui");
+    }**/
+    public AnaliseVendasDto buscarVendas(int id_venda){
+        Connection con = null;
 
-            ps.setInt(1, analiseVendasDto.getId_venda());
-            ps.setInt(2, analiseVendasDto.getId_produto());
-            ps.setDouble(3, analiseVendasDto.getValorProduto());
+        Connection conectar();
 
+        String sql = "SELECT id_venda, valor_venda, dt_venda, status FROM vendas WHERE id_venda=?";
 
-        } catch{
+        try{
+
+        } catch (SQLException e) {
 
         }
+
+
+
+
+
     }
 }
+
