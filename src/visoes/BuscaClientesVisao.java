@@ -20,16 +20,17 @@ import javax.swing.DropMode;
 import java.awt.Label;
 import java.awt.SystemColor;
 import javax.swing.UIManager;
+import javax.swing.JLabel;
 
 public class BuscaClientesVisao {
 
 	private JFrame BuscaCliente;
 	private VendasControladora vendasControladora;
-	private JTextField txtBuscarCliente;
 	private JTextField textField;
-	private JTextField textField_3;
 	private JTextField textField_1;
 	private JTextField textField_2;
+	private JTextField textField_4;
+	private JLabel lblCliente;
 
 	public JFrame getFrame() {
 		return BuscaCliente;
@@ -65,23 +66,15 @@ public class BuscaClientesVisao {
 		BuscaCliente = new JFrame();
 		BuscaCliente.getContentPane().setBackground(UIManager.getColor("TabbedPane.light"));
 		BuscaCliente.setTitle("BUSCA CLIENTE");
-		BuscaCliente.setBounds(100, 100, 450, 300);
+		BuscaCliente.setBounds(100, 100, 592, 387);
 		BuscaCliente.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		BuscaCliente.getContentPane().setLayout(null);
 		
-		txtBuscarCliente = new JTextField();
-		txtBuscarCliente.setBounds(0, 0, 434, 23);
-		txtBuscarCliente.setHorizontalAlignment(SwingConstants.CENTER);
-		txtBuscarCliente.setBackground(Color.WHITE);
-		txtBuscarCliente.setFont(new Font("Tahoma", Font.BOLD, 14));
-		txtBuscarCliente.setText("Buscar Cliente");
-		BuscaCliente.getContentPane().add(txtBuscarCliente);
-		txtBuscarCliente.setColumns(10);
-		
 		JButton btnNewButton = new JButton("Buscar");
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 14));
 		btnNewButton.setForeground(UIManager.getColor("ToggleButton.highlight"));
-		btnNewButton.setBackground(UIManager.getColor("ToolBar.foreground"));
-		btnNewButton.setBounds(286, 211, 126, 23);
+		btnNewButton.setBackground(Color.CYAN);
+		btnNewButton.setBounds(404, 288, 126, 25);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -89,43 +82,38 @@ public class BuscaClientesVisao {
 		BuscaCliente.getContentPane().add(btnNewButton);
 		
 		textField = new JTextField();
-		textField.setBounds(24, 64, 168, 23);
+		textField.setBounds(35, 105, 495, 23);
 		BuscaCliente.getContentPane().add(textField);
 		textField.setColumns(10);
 		
 		Label label_1 = new Label("Email");
-		label_1.setFont(new Font("Dialog", Font.BOLD, 12));
-		label_1.setBounds(238, 43, 62, 15);
+		label_1.setFont(new Font("Tahoma", Font.BOLD, 14));
+		label_1.setBounds(35, 146, 62, 15);
 		BuscaCliente.getContentPane().add(label_1);
 		
 		Label label_1_1 = new Label("Telefone");
-		label_1_1.setFont(new Font("Dialog", Font.BOLD, 12));
-		label_1_1.setBounds(24, 102, 62, 15);
+		label_1_1.setFont(new Font("Tahoma", Font.BOLD, 14));
+		label_1_1.setBounds(330, 209, 76, 15);
 		BuscaCliente.getContentPane().add(label_1_1);
 		
 		Label label_1_2 = new Label("Nome");
-		label_1_2.setFont(new Font("Dialog", Font.BOLD, 12));
-		label_1_2.setBounds(24, 43, 62, 15);
+		label_1_2.setFont(new Font("Tahoma", Font.BOLD, 14));
+		label_1_2.setBounds(35, 84, 62, 15);
 		BuscaCliente.getContentPane().add(label_1_2);
-		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(238, 64, 168, 23);
-		BuscaCliente.getContentPane().add(textField_3);
 		
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
-		textField_1.setBounds(24, 120, 168, 23);
+		textField_1.setBounds(35, 167, 495, 23);
 		BuscaCliente.getContentPane().add(textField_1);
 		
 		Label label_1_1_1 = new Label("CPF");
-		label_1_1_1.setFont(new Font("Dialog", Font.BOLD, 12));
-		label_1_1_1.setBounds(238, 102, 62, 15);
+		label_1_1_1.setFont(new Font("Tahoma", Font.BOLD, 14));
+		label_1_1_1.setBounds(38, 209, 62, 15);
 		BuscaCliente.getContentPane().add(label_1_1_1);
 		
 		textField_2 = new JTextField();
 		textField_2.setColumns(10);
-		textField_2.setBounds(238, 118, 168, 25);
+		textField_2.setBounds(35, 230, 197, 25);
 		BuscaCliente.getContentPane().add(textField_2);
 		
 		JButton btnCancelar = new JButton("Cancelar");
@@ -135,7 +123,19 @@ public class BuscaClientesVisao {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnCancelar.setBounds(24, 211, 126, 23);
+		btnCancelar.setBounds(35, 289, 126, 26);
 		BuscaCliente.getContentPane().add(btnCancelar);
+		
+		textField_4 = new JTextField();
+		textField_4.setColumns(10);
+		textField_4.setBounds(333, 230, 197, 25);
+		BuscaCliente.getContentPane().add(textField_4);
+		
+		lblCliente = new JLabel("CLIENTE");
+		lblCliente.setForeground(Color.CYAN);
+		lblCliente.setFont(new Font("Tahoma", Font.BOLD, 35));
+		lblCliente.setEnabled(false);
+		lblCliente.setBounds(198, 22, 194, 50);
+		BuscaCliente.getContentPane().add(lblCliente);
 	}
 }
