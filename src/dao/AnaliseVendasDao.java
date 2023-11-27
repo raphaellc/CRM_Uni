@@ -4,7 +4,6 @@ import src.dto.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.sql.Connection;
 
 
 public class AnaliseVendasDao {
@@ -30,23 +29,35 @@ public class AnaliseVendasDao {
          }
         System.out.println("Aqui");
     }**/
-    public AnaliseVendasDto buscarVendas(int id_venda){
-        Connection con = null;
+    public AnaliseVendasDto listarVendas() {
+        List<AnaliseVendasDto> listarVendas = new ArrayList<>();
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
 
-        Connection conectar();
 
-        String sql = "SELECT id_venda, valor_venda, dt_venda, status FROM vendas WHERE id_venda=?";
+        try {
+            Connection conn = Conexao.conectar();
 
-        try{
+            String sql = "SELECT id_venda, valor_venda, data_venda, status, quantidade_produtos, id_vendedor FROM vendas WHERE id_venda = ?";
+            preparedStatement = conn.prepareStatement(sql);
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                AnaliseVendasDto vendas = new AnaliseVendasDto();
+                vendas.setId_venda(resultSet.getInt(1));
+                vendas.setValor_venda(resultSet.getFloat(2));
+                vendas.setData_venda(resultSet.getDate(3));
+                vendas.setStatus(resultSet.getString(4));
+                vendas.setQuantidade_produtos(resultSet.getInt(5));
+                vendas.setId_vendedor(resultSet.getInt(6));
+
+                return vendas;
+            }
 
         } catch (SQLException e) {
+            e.printStackTrace();
 
-        }
-
-
-
-
-
+        } return null;
     }
 }
 

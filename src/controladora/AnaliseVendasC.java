@@ -7,9 +7,8 @@ public class AnaliseVendasC {
 
     private List<AnaliseVendasDto> vendas;
     private AnaliseVendasDto venda;
-    public AnaliseVendasC() {
+    public AnaliseVendasC() {}
 
-    }
 
     public List<AnaliseVendasDto> listarVendas() {
         return this.listarVendas();
