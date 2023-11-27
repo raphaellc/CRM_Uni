@@ -16,6 +16,8 @@ import java.awt.List;
 import java.awt.event.ItemEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -32,8 +34,8 @@ import java.awt.event.ActionEvent;
 public class VendasVisao {
 
 	private JFrame Vendas;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField descVendedor;
+	private JTextField descCliente;
 	private JTextField descProduto;
 	private JTextField textField_3;
 	private VendasControladora vendasControladora;
@@ -82,11 +84,6 @@ public class VendasVisao {
 		Vendas.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Vendas.getContentPane().setLayout(null);
 		
-		textField = new JTextField();
-		textField.setBounds(211, 103, 363, 19);
-		Vendas.getContentPane().add(textField);
-		textField.setColumns(10);
-		
 		JButton buscar_vendedor = new JButton("");
 		buscar_vendedor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -104,15 +101,20 @@ public class VendasVisao {
 		lblNewLabel.setBounds(95, 104, 106, 13);
 		Vendas.getContentPane().add(lblNewLabel);
 		
+		descVendedor = new JTextField();
+		descVendedor.setBounds(211, 103, 363, 19);
+		Vendas.getContentPane().add(descVendedor);
+		descVendedor.setColumns(10);
+		
 		JLabel lblCliente = new JLabel("CLIENTE:");
 		lblCliente.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblCliente.setBounds(95, 147, 79, 13);
 		Vendas.getContentPane().add(lblCliente);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(211, 146, 363, 19);
-		Vendas.getContentPane().add(textField_1);
+		descCliente = new JTextField();
+		descCliente.setColumns(10);
+		descCliente.setBounds(211, 146, 363, 19);
+		Vendas.getContentPane().add(descCliente);
 		
 		JLabel lblProduto = new JLabel("PRODUTO:");
 		lblProduto.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -154,13 +156,15 @@ public class VendasVisao {
 //		lblProduto_1.setBounds(527, 444, 63, 13);
 //		Vendas.getContentPane().add(lblProduto_1);
 		
-		DefaultTableModel model = new DefaultTableModel();
-        model.setColumnIdentifiers(columnNames);
+//////////////////////
+		
+		DefaultTableModel modelProduto = new DefaultTableModel();
+        modelProduto.setColumnIdentifiers(columnNames);
         //DefaultTableModel model = new DefaultTableModel(tm.getData1(), tm.getColumnNames());
         //table = new JTable(model);
         table = new JTable();
         table.setBounds(95, 245, 514, 184);
-        table.setModel(model);
+        table.setModel(modelProduto);
         table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         table.setFillsViewportHeight(true);
         Vendas.getContentPane().add(table);
@@ -194,10 +198,10 @@ public class VendasVisao {
 		
 		String frm_pagamento[] = {"Forma de pagamento", "PIX", "Dinheiro", "Crédito", "Débito"};
 	    @SuppressWarnings({ "rawtypes" })
-		final DefaultComboBoxModel model = new DefaultComboBoxModel(frm_pagamento);
+		final DefaultComboBoxModel modelPagamento = new DefaultComboBoxModel(frm_pagamento);
 		@SuppressWarnings("rawtypes")
 		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(model);
+		comboBox.setModel(modelPagamento);
 		comboBox.setBackground(new Color(255, 255, 255));
 		comboBox.setForeground(new Color(0, 0, 0));
 		comboBox.setBounds(205, 508, 131, 22);
