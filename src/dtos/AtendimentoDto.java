@@ -14,6 +14,10 @@ public class AtendimentoDto {
     private LocalDate dtResolucao;
     private String descProblema;
     private int prioridadeCaso;
+    private String statusAtualizacao;
+    private LocalDate dtAtualizacao;
+    private String descAtualizacao;
+
 
     //Construtor
 
@@ -73,6 +77,26 @@ public class AtendimentoDto {
     public int getPrioridadeCaso() {
         return prioridadeCaso;
     }
+    public String getStatusAtualizacao() {
+        return statusAtualizacao;
+    }
+    public void setStatusAtualizacao(String statusAtualizacao) {
+        this.statusAtualizacao = statusAtualizacao;
+    }
+    public LocalDate getDtAtualizacao() {
+        return dtAtualizacao;
+    }
+    public void setDtAtualizacao(LocalDate dtAtualizacao) {
+        this.dtAtualizacao = dtAtualizacao;
+    }
+    public String getDescAtualizacao() {
+        return descAtualizacao;
+    }
+    public void setDescAtualizacao(String descAtualizacao) {
+        this.descAtualizacao = descAtualizacao;
+    }
+
+
 
     public String getPrioridadeCasoString() {
         switch (prioridadeCaso) {
@@ -101,7 +125,11 @@ public class AtendimentoDto {
                 ", descProblema='" + descProblema + '\'' +
                 ", idCategoria=" + idCategoria +
                 ", prioridadeCaso=" + prioridadeCaso +
-                '}';
+                ", statusAtualizacao='" + statusAtualizacao + '\'' +
+                ", dtAtualizacao=" + dtAtualizacao +
+                ", descAtualizacao='" + descAtualizacao + '\'' +
+                '}'
+                ;
     }
 
 }

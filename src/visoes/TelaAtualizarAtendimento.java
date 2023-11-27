@@ -6,22 +6,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class TelaAtualizarAtendimento extends JFrame {
-    //Tela que irá resgatar informações de um atendimento existente, irá mostrar as informações
-    //e permitir que o usuário atualize o atendimento, dando-o um status, com descrição e etc.
-
-    //Também irá permitir que o usuário feche o atendimento e deixe-o como encerrado.
-
-    //Falta adicionar os métodos das dtos, para que seja possivel inserir informações relacionadas ao status.
-
-    //Também é necessário os métodos para resgatar as informações do atendimento existente.
-
-
-    //Tenho uma ideia para que ao usuário clicar em Fechar Atendimento, automaticamente atribua aos campos de status e
-    //descrição de status como "FINALIZADO", tal qual atribuir automaticamente a data de resolução a data em que o botão
-    //for acionado.
     private JTextField txtStatusAtualizacao;
     private JTextField txtDataAtualizacao;
     private JTextArea txtDescricaoAtualizacao;
+    private JTextField txtIdAtendimento;
+    private JTextField txtIdPessoaSolicitante;
+    private JTextField txtStatusAtendimento;
+    private JTextField txtDataAbertura;
+    private JTextArea txtDescricaoProblema;
 
     public TelaAtualizarAtendimento() {
         setTitle("Detalhes do Atendimento");
@@ -31,25 +23,26 @@ public class TelaAtualizarAtendimento extends JFrame {
 
         JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 
-
         JLabel lblIdAtendimento = new JLabel("ID de Atendimento:");
-        JTextField txtIdAtendimento = new JTextField(30);
-        txtIdAtendimento.setEditable(false);
+        txtIdAtendimento = new JTextField(30);
+
+        JButton btnCarregarAtendimento = new JButton("Carregar Atendimento");
+
 
         JLabel lblIdPessoaSolicitante = new JLabel("ID da Pessoa Solicitante:");
-        JTextField txtIdPessoaSolicitante = new JTextField(30);
+        txtIdPessoaSolicitante = new JTextField(30);
         txtIdPessoaSolicitante.setEditable(false);
 
         JLabel lblStatusAtendimento = new JLabel("Status do Atendimento:");
-        JTextField txtStatusAtendimento = new JTextField(30);
+        txtStatusAtendimento = new JTextField(30);
         txtStatusAtendimento.setEditable(false);
 
         JLabel lblDataAbertura = new JLabel("Data de Abertura:");
-        JTextField txtDataAbertura = new JTextField(30);
+        txtDataAbertura = new JTextField(30);
         txtDataAbertura.setEditable(false);
 
         JLabel lblDescricaoProblema = new JLabel("Descrição do Problema:");
-        JTextArea txtDescricaoProblema = new JTextArea(4, 30);
+        txtDescricaoProblema = new JTextArea(4, 30);
         txtDescricaoProblema.setWrapStyleWord(true);
         txtDescricaoProblema.setLineWrap(true);
         txtDescricaoProblema.setCaretPosition(0);
@@ -70,14 +63,14 @@ public class TelaAtualizarAtendimento extends JFrame {
         txtDescricaoProblema.setCaretPosition(0);
         txtDescricaoAtualizacao.setBorder(BorderFactory.createEtchedBorder());
 
-
         JButton btnAtualizar = new JButton("Atualizar Atendimento");
         JButton btnFechar = new JButton("Fechar Atendimento");
         JButton btnCancelar = new JButton("Cancelar");
 
-        //Componentes do painel
+        // Componentes do painel
         panel.add(lblIdAtendimento);
         panel.add(txtIdAtendimento);
+        panel.add(btnCarregarAtendimento);
         panel.add(lblIdPessoaSolicitante);
         panel.add(txtIdPessoaSolicitante);
         panel.add(lblStatusAtendimento);
@@ -107,7 +100,8 @@ public class TelaAtualizarAtendimento extends JFrame {
                 String dataAtualizacao = txtDataAtualizacao.getText();
                 String descricaoAtualizacao = txtDescricaoAtualizacao.getText();
 
-                // Inserir métodos para atualizar o status do atendimento
+                // Inserir métodos para atualizar o status do atendimento, deve adicionar Status da atualização
+                // Data da atualização e descrição da atualização
 
                 JOptionPane.showMessageDialog(null, "Atendimento Atualizado!");
             }
@@ -116,7 +110,8 @@ public class TelaAtualizarAtendimento extends JFrame {
         btnFechar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Inserir métodos para fechar o atendimento
+                // Inserir métodos para dar o atendimento como fechado, esse metodo deve setar seu status como
+                // Fechado ou Concluido
                 JOptionPane.showMessageDialog(null, "Atendimento Encerrado!");
                 dispose(); // Fecha a janela
             }
@@ -125,17 +120,32 @@ public class TelaAtualizarAtendimento extends JFrame {
         btnCancelar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //Opção para caso o usuário queira cancelar a ação
+                // Opção para caso o usuário queira cancelar a ação
                 dispose(); // Fecha a janela
             }
         });
+        btnCarregarAtendimento.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String idAtendimento = txtIdAtendimento.getText();
+                carregarAtendimento(idAtendimento);
+            }
+        });
     }
-        public static void main (String[]args){
-            SwingUtilities.invokeLater(new Runnable() {
-                public void run() {
-                    TelaAtualizarAtendimento frame = new TelaAtualizarAtendimento();
-                    frame.setVisible(true);
-                }
-            });
-        }
+
+
+    private void carregarAtendimento(String idAtendimento) {
+        //Método para carregar as informações do atendimento com base no ID
+        //Adicionar aqui o codigo necessario para carregar o atendimento e mostrar suas informacoes na tela,
+        //Resgatar e mostrar: id da pessoa solicitante, status do atendimento, data de abertura e descrição do problema
     }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                TelaAtualizarAtendimento frame = new TelaAtualizarAtendimento();
+                frame.setVisible(true);
+            }
+        });
+    }
+}

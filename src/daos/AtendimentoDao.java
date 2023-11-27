@@ -64,8 +64,43 @@ public class AtendimentoDao {
         return false;
     }
 
-    public boolean alterarAtendimento(Atendimento atendimento){
-        return true; // Implementar a alteração dos atendimentos no banco de dados.
+    public boolean atualizarAtendimento(AtendimentoDto atendimentoDto){
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        try {
+            connection = this.con.conectar();
+
+            String sql = "UPDATE crmuni.atendimento SET status_atualizacao = ?, dt_atualizacao = ?, desc_atualizacao = ? WHERE id_atendimento = ?";
+
+            preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setString(1, atendimentoDto.getStatusAtualizacao());
+            preparedStatement.setDate(2, Date.valueOf(atendimentoDto.getDtAtualizacao()));
+            preparedStatement.setString(3, atendimentoDto.getDescAtualizacao());
+            preparedStatement.setInt(4, atendimentoDto.getIdAtendimento());
+
+            if (preparedStatement.executeUpdate() != 0){
+                return true;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Falha ao atualizar. Mensagem de erro: " + e.getMessage());
+        } finally {
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+                System.out.println("Falha ao atualizar. Mensagem de erro: " + e.getMessage());
+            }
+        }
+        return false;
     }
     public boolean removerAtendimento(int idAtendimento){
         Connection connection = null;
@@ -123,10 +158,14 @@ public class AtendimentoDao {
                 atendimentoDto.setDescProblema(resultSet.getString("desc_problema"));
                 atendimentoDto.setIdCategoria(resultSet.getInt("id_categoria"));
                 atendimentoDto.setPrioridadeCaso(resultSet.getInt("id_prioridade"));
-
-                // Definindo os atributos restantes da mesma maneira
+                atendimentoDto.setStatusAtualizacao(resultSet.getString("status_atualizacao"));
+                if (resultSet.getDate("dt_atualizacao") != null) {
+                    atendimentoDto.setDtAtualizacao(resultSet.getDate("dt_atualizacao").toLocalDate());
+                }
+                atendimentoDto.setDescAtualizacao(resultSet.getString("desc_atualizacao"));
 
                 atendimentos.add(atendimentoDto);
+
             }
 
         } catch (SQLException e) {
@@ -166,15 +205,15 @@ public class AtendimentoDao {
         // Criando uma instância de AtendimentoDao, passando a instância de AtendimentoConexao
         AtendimentoDao atendimentoDao = new AtendimentoDao(atendimentoConexao);
 
-//        // Adicionando um novo atendimento
+        // Adicionando um novo atendimento
 //        AtendimentoDto atendimentoDto = new AtendimentoDto();
-//        atendimentoDto.setIdAtendimento(1);
-//        atendimentoDto.setIdResponsavel(2);
+//        atendimentoDto.setIdAtendimento(8);
+//        atendimentoDto.setIdResponsavel(9);
 //        atendimentoDto.setDtAbertura(LocalDate.now());
 //        atendimentoDto.setDtResolucao(LocalDate.now().plusDays(1));
-//        atendimentoDto.setDescProblema("Problema de teste");
-//        atendimentoDto.setIdCategoria(3);
-//        atendimentoDto.setPrioridadeCaso(1);
+//        atendimentoDto.setDescProblema("Mais um teste");
+//        atendimentoDto.setIdCategoria(5);
+//        atendimentoDto.setPrioridadeCaso(2);
 //
 //        boolean sucessoAdicao = atendimentoDao.adicionarAtendimento(atendimentoDto);
 //        if (sucessoAdicao) {
@@ -184,31 +223,22 @@ public class AtendimentoDao {
 //        }
 //
 //        List<AtendimentoDto> listaAtendimentos = atendimentoDao.listarAtendimento();
-//
-//        // Imprimir os atendimentos na tela
-//        System.out.println("Lista de Atendimentos:");
-//        for (AtendimentoDto atendimento : listaAtendimentos) {
-//            System.out.println(atendimento);
-//        }
-        System.out.println("Lista de Atendimentos:");
-        List<AtendimentoDto> listaAtendimentos = atendimentoDao.listarAtendimento();
 
+        // Atribuindo status a um atendimento
+        AtendimentoDto atendimentoAtualizado = new AtendimentoDto();
+        atendimentoAtualizado.setIdAtendimento(5); // Substituir pelo ID que deseja atribuir um status
+        atendimentoAtualizado.setStatusAtualizacao("Status Teste");
+        atendimentoAtualizado.setDtAtualizacao(LocalDate.now());
+        atendimentoAtualizado.setDescAtualizacao("Descrição teste");
 
+        boolean atualizacaoAtendimento = atendimentoDao.atualizarAtendimento(atendimentoAtualizado);
+        if (atualizacaoAtendimento) {
+            System.out.println("Atendimento atualizado!");
+        } else {
+            System.out.println("Falha ao atualizar!.");
+        }
         AtendimentoConexao.fecharConexao(conexao);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     }
 
