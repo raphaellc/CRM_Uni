@@ -1,25 +1,25 @@
 package src.dao;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import src.dto.AnaliseVendasDto;
 
 public class Conexao {
-    private Connection con;
-    private String driver = "com.mysql.cj.jdbc.Driver";
-    private static final String url = System.getenv("url");
-    private static final String username = System.getenv("username");
-    private static final String password = System.getenv("password");
 
-    public Connection conectar() {
+    public static Connection conectar() {
+        String url = "jdbc:mysql://localhost:3306/crmuni";
+        String usuario = "root";
+        String senha = "1234";
 
         try {
-            Class.forName(driver);
-            con = DriverManager.getConnection(url, username, password);
-            System.out.println("Conexao estabelecida");
-            return con;
-        } catch (Exception e) {
-            System.out.println(e);
+            // Carrega o driver JDBC
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            // Estabelece a conexão
+            Connection conexao = DriverManager.getConnection(url, usuario, senha);
+            return conexao;
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
             return null;
         }
     }
