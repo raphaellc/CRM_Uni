@@ -9,6 +9,7 @@ import java.util.List;
 
 public class AnaliseVendasModelo {
 
+    /**
     private AnaliseVendasDao analise_vendas_dao;
     private Conexao conexao;
     private List<AnaliseVendasDto> lista_de_produtos;
@@ -73,4 +74,5 @@ public class AnaliseVendasModelo {
     public List<AnaliseVendasDto> listarVendas() {
         return Collections.singletonList(analise_vendas_dao.listarVendas()); //arrumar
     }
+     **/
 }

@@ -13,6 +13,16 @@ public class TesteMain {
 
         List<AnaliseCampanhaDto> campanha = analise_campanha_dao.selecionarCampanha("Campanha3");
 
-        System.out.println(campanha);
+        // Exibindo os valores da tabela
+        if (campanha.isEmpty()) {
+            System.out.println("Nenhum resultado encontrado.");
+        } else {
+            for (AnaliseCampanhaDto valor : campanha) {
+                System.out.println("ID: " + valor.getId_campanha());
+                System.out.println("Nome: " + valor.getNome_campanha());
+                System.out.println("Data Início: " + valor.getDt_inicio_campanha());
+                System.out.println("Data Fim: " + valor.getDt_fim_campanha());
+            }
+        }
     }
 }
