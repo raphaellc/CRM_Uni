@@ -7,11 +7,7 @@ import java.util.List;
 
 
 public class AnaliseVendasDao {
-    private Conexao con;
 
-    public AnaliseVendasDao(Conexao con) {
-        this.con = con;
-    }
 /**
     public void boolean identificaProdutoMaiorValor(AnaliseVendasDto analiseVendasDto) {
 
@@ -29,6 +25,8 @@ public class AnaliseVendasDao {
          }
         System.out.println("Aqui");
     }**/
+
+/**
     public AnaliseVendasDto listarVendas() {
         List<AnaliseVendasDto> listarVendas = new ArrayList<>();
         PreparedStatement preparedStatement = null;
@@ -58,6 +56,15 @@ public class AnaliseVendasDao {
             e.printStackTrace();
 
         } return null;
-    }
-}
+ **/
 
+    /**
+    public void buscarVendas(int id_venda) {
+
+        Connection conexao = Conexao.conectar();
+
+        String sql = "SELECT id_venda, valor_venda, dt_venda, status FROM vendas WHERE id_venda = ?"
+
+    } **/
+
+}

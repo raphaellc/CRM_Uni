@@ -7,6 +7,8 @@ import java.util.List;
 
 public class DesempenhoVendedorModelo {
 
+    /**
+
     private List<AnaliseVendasDto> lista_de_vendas;
 
     public AnaliseVendasDto buscarVendas(int id_venda){
@@ -23,7 +25,9 @@ public class DesempenhoVendedorModelo {
     private AnaliseAtendimentoDto duracao_atendimento;
     public AnaliseAtendimentoDto tempoMedioDeAtendimento(AnaliseAtendimentoDto duracao_atendimento) {
         return duracao_atendimento;
-    }
+    } **/
+
+
     /**
     public AnaliseAtendimentoDto taxaDeConversao(List<AnaliseAtendimentoDto> lista_de_vendas) {
         if(lista_de_vendas.isVenda_fechada())
