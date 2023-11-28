@@ -46,7 +46,14 @@ public class TelaListagemContato extends JFrame {
         botaoSelecionar.addActionListener(event -> {
             if (nonNull(pessoaSelecionada)) {
                 System.out.println("A pessoa selecionada: " + pessoaSelecionada);
-                // TODO: Chamar tela ou controladora aqui
+
+                if(telaAnterior instanceof TelaCadastroContato){
+                    final TelaCadastroContato TelaAtualizacao = new TelaCadastroContato(nomeAplicacao, controladora, pessoaSelecionada);
+                    telaAnterior.dispose();
+                    TelaAtualizacao.setVisible(true);
+                    this.dispose();
+                }
+
             } else {
                 JOptionPane.showMessageDialog(this, "Nenhuma pessoa selecionada! =(");
             }
@@ -62,8 +69,16 @@ public class TelaListagemContato extends JFrame {
         });
 
         botaoVoltar.addActionListener(event -> {
-            telaAnterior.setVisible(true);
-            this.dispose();
+
+            if(telaAnterior instanceof TelaCadastroContato){
+                final TelaCadastroContato TelaCadastro = new TelaCadastroContato(nomeAplicacao, controladora);
+                telaAnterior.dispose();
+                TelaCadastro.setVisible(true);
+                this.dispose();
+            }else{
+                telaAnterior.setVisible(true);
+                this.dispose();
+            }
         });
     }
 

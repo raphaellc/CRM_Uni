@@ -43,4 +43,12 @@ public interface PessoaQuery {
             + "LEFT JOIN cargo_pessoa C on P.id_cargo = C.id_cargo_pessoa "
             + "LEFT JOIN endereco E on P.id_pessoa = E.id_pessoa WHERE P.id_pessoa = ?";
     String DELETAR_PESSOA_ID = "DELETE FROM pessoa WHERE id_pessoa = ?";
+
+    String ATUALIZAR_PESSOA = "UPDATE pessoa " +
+            "SET nome = ?, data_nascimento = ?, celular = ?, email = ?, ocupacao = ? " +
+            "WHERE id_pessoa = ?";
+
+    String ATUALIZAR_ENDERECO = "UPDATE endereco " +
+            "SET logradouro = ?, numero = ?, complemento = ?, bairro = ?, cidade = ?, estado = ?, cep = ? " +
+            "WHERE id_endereco = ?";
 }

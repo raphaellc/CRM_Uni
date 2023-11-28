@@ -25,4 +25,9 @@ public class DateUtils {
         final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return LocalDate.parse(data, formatter);
     }
+
+    public static String tranformLocalDateToString(final LocalDate data){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return data.format(formatter);
+    }
 }
