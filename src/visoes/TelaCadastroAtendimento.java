@@ -1,10 +1,13 @@
 package visoes;
 
+import daos.AtendimentoDao;
+import dtos.AtendimentoDto;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.time.LocalDate;
 
 
 public class TelaCadastroAtendimento{
@@ -49,12 +52,12 @@ public class TelaCadastroAtendimento{
         JButton btnCadastrar = new JButton("Cadastrar");
         JButton btnCancelar = new JButton("Cancelar");
 
-        panel.add(lblIdAtendimento);
-        panel.add(txtIdAtendimento);
+//        panel.add(lblIdAtendimento);
+//        panel.add(txtIdAtendimento);
         panel.add(lblIdPessoaSolicitante);
         panel.add(txtIdPessoaSolicitante);
-        panel.add(lblDataAbertura);
-        panel.add(txtDataAbertura);
+//        panel.add(lblDataAbertura);
+//        panel.add(txtDataAbertura);
         panel.add(lblDescricaoProblema);
         panel.add(txtDescricaoProblema);
         panel.add(lblPrioridadeCaso);
@@ -74,7 +77,7 @@ public class TelaCadastroAtendimento{
         btnCadastrar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Adicionar logica dos metodos de logica
+                //Adicionar logica dos metodos de logica
 
                 //Codigo de Exemplo (retirado do github de referência do sor)
 //                ContatoDto contato = new ContatoDto();
@@ -93,6 +96,20 @@ public class TelaCadastroAtendimento{
 //                    JOptionPane.showMessageDialog(TelaCadastroContato.this,"Cadastrado com sucesso");
 //                else
 //                    JOptionPane.showMessageDialog(TelaCadastroContato.this,"Falhou cadastro");
+
+                AtendimentoDto atendimentoDto = new AtendimentoDto();
+                atendimentoDto.setIdPessoa(Integer.parseInt(txtIdPessoaSolicitante.getText()));
+
+                atendimentoDto.setDescProblema(txtDescricaoProblema.getText());
+                atendimentoDto.setPrioridadeCaso(Integer.parseInt(txtPrioridadeCaso.getText()));
+                atendimentoDto.setIdCategoria(Integer.parseInt(txtIdCategoriaProduto.getText()));
+                atendimentoDto.setIdResponsavel(Integer.parseInt(txtIdResponsavelAtendimento.getText()));
+                atendimentoDto.setIdProduto(Integer.parseInt(txtIdCategoriaProduto.getText()));
+
+                System.out.println("Data de abertura: " + atendimentoDto.getDtAbertura());
+
+                AtendimentoDao atendimentoDao = new AtendimentoDao();
+                atendimentoDao.adicionarAtendimento(atendimentoDto);
 
                 JOptionPane.showMessageDialog(null, "Atendimento cadastrado com sucesso!");
             }
