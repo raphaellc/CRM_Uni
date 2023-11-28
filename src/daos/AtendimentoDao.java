@@ -102,26 +102,37 @@ public class AtendimentoDao {
         }
         return false;
     }
-    public boolean removerAtendimento(int idAtendimento){
+    public boolean fecharAtendimento(int idAtendimento){
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
         try {
             connection = this.con.conectar();
 
-            String sql =  "DELETE FROM crmuni.atendimento WHERE id_atendimento = ?";
+            // Consultar o atendimento antes de fechar para obter informações necessárias
+            AtendimentoDto atendimentoAntesDeFechar = buscarAtendimentoPorId(idAtendimento);
 
-            preparedStatement = connection.prepareStatement(sql);
+            if (atendimentoAntesDeFechar != null) {
+                // Criar uma nova instância de AtendimentoDto com os dados a serem atualizados
+                AtendimentoDto atendimentoFechado = new AtendimentoDto();
+                atendimentoFechado.setIdAtendimento(idAtendimento);
+                atendimentoFechado.setStatusAtualizacao("Fechado");
+                atendimentoFechado.setDtAtualizacao(LocalDate.now());
+                atendimentoFechado.setDescAtualizacao("Atendimento fechado/Concluído");
 
-            preparedStatement.setInt(1, idAtendimento);
+                // Atualizar o atendimento com os novos dados
+                boolean atualizacaoAtendimento = atualizarAtendimento(atendimentoFechado);
 
+                if (atualizacaoAtendimento) {
+                    // Retorna true se a atualização foi bem-sucedida
+                    return true;
+                } else {
+                    System.out.println("Falha ao atualizar o atendimento antes de fechar.");
+                }
+            } else {
+                System.out.println("Atendimento não encontrado para o ID: " + idAtendimento);
+            }
 
-
-            return preparedStatement.executeUpdate() != 0;
-
-
-        } catch (SQLException e) {
-            e.printStackTrace();
         } finally {
             try {
                 if (preparedStatement != null) {
@@ -136,7 +147,8 @@ public class AtendimentoDao {
         }
         return false;
     }
-    public List<AtendimentoDto> listarAtendimento(){
+
+    public List<AtendimentoDto> listarAtendimentos(){
         List<AtendimentoDto> atendimentos = new ArrayList<>();
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -194,6 +206,67 @@ public class AtendimentoDao {
         return atendimentos;
     }
 
+    public AtendimentoDto buscarAtendimentoPorId(int idAtendimento) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        AtendimentoDto atendimentoDto = null;
+
+        try {
+            connection = this.con.conectar();
+
+
+            String sql = "SELECT * FROM crmuni.atendimento WHERE id_atendimento = ?";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, idAtendimento);
+
+            resultSet = preparedStatement.executeQuery();
+
+
+            if (resultSet.next()) {
+                atendimentoDto = new AtendimentoDto();
+                atendimentoDto.setIdAtendimento(resultSet.getInt("id_pessoa"));
+                atendimentoDto.setIdResponsavel(resultSet.getInt("id_pessoa_responsavel"));
+                atendimentoDto.setDtAbertura(resultSet.getDate("dt_abertura").toLocalDate());
+                atendimentoDto.setDtResolucao(resultSet.getDate("dt_resolucao").toLocalDate());
+                atendimentoDto.setDescProblema(resultSet.getString("desc_problema"));
+                atendimentoDto.setIdCategoria(resultSet.getInt("id_categoria"));
+                atendimentoDto.setPrioridadeCaso(resultSet.getInt("id_prioridade"));
+                atendimentoDto.setStatusAtualizacao(resultSet.getString("status_atualizacao"));
+                if (resultSet.getDate("dt_atualizacao") != null) {
+                    atendimentoDto.setDtAtualizacao(resultSet.getDate("dt_atualizacao").toLocalDate());
+                }
+                atendimentoDto.setDescAtualizacao(resultSet.getString("desc_atualizacao"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+        if (atendimentoDto != null) {
+
+            System.out.println(atendimentoDto);
+        } else {
+            System.out.println("Atendimento não encontrado para o ID: " + idAtendimento);
+        }
+
+        return atendimentoDto;
+    }
 
     public static void main(String[] args) {
         /// Testando a conexão com o banco de dados
@@ -222,7 +295,7 @@ public class AtendimentoDao {
 //            System.out.println("Falha ao adicionar o atendimento.");
 //        }
 //
-//        List<AtendimentoDto> listaAtendimentos = atendimentoDao.listarAtendimento();
+//        List<AtendimentoDto> listaAtendimentos = atendimentoDao.listarAtendimentos();
 
         // Atribuindo status a um atendimento
         AtendimentoDto atendimentoAtualizado = new AtendimentoDto();

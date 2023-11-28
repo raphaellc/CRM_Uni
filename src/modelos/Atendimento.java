@@ -24,6 +24,6 @@ public class Atendimento {
     }
 
     public List<AtendimentoDto> listarAtendimentos() {
-        return atendimentoDao.listarAtendimento();
+        return atendimentoDao.listarAtendimentos();
     }
 }
