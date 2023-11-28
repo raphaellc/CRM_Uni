@@ -15,6 +15,9 @@
 	<classpathentry kind="lib" path="C:/Users/Eduardo/Downloads/jgoodies-forms-1.8.0.jar" sourcepath="jgoodies-forms-1.8.0-sources.jar"/>
 	<classpathentry kind="lib" path="jgoodies-common-1.8.0.jar" sourcepath="jgoodies-common-1.8.0-sources.jar"/>
 	<classpathentry kind="lib" path="jgoodies-forms-1.8.0.jar" sourcepath="jgoodies-forms-1.8.0-sources.jar"/>
+<<<<<<< HEAD
 >>>>>>> 9d1f842dfdfdf82fffbe403d8e6301374de1ccda
+=======
+>>>>>>> 443404a861deb92e10adc9002150487de1c85a2e
 	<classpathentry kind="output" path="bin"/>
 </classpath>
