@@ -26,4 +26,8 @@ public class Atendimento {
     public List<AtendimentoDto> listarAtendimentos() {
         return atendimentoDao.listarAtendimentos();
     }
+
+    public boolean removerAtendimento(int id_atendimento){
+    return atendimentoDao.removerAtendimento(id_atendimento);
+    }
 }
