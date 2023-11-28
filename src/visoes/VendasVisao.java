@@ -80,7 +80,7 @@ public class VendasVisao {
 	private void initialize() {
 		Vendas = new JFrame();
 		Vendas.setBackground(new Color(255, 255, 255));
-		Vendas.setBounds(100, 100, 800, 600);
+		Vendas.setBounds(100, 100, 754, 600);
 		Vendas.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Vendas.getContentPane().setLayout(null);
 		
@@ -93,42 +93,42 @@ public class VendasVisao {
 			}
 		});
 		buscar_vendedor.setIcon(new ImageIcon("C:\\Users\\jacks\\OneDrive - Associacao Antonio Vieira\\Área de Trabalho\\UNISINOS\\3° SEMESTRE\\POO\\JAVA\\CRM_Uni\\imagens\\lupa16.png"));
-		buscar_vendedor.setBounds(584, 100, 25, 25);
+		buscar_vendedor.setBounds(618, 97, 25, 25);
 		Vendas.getContentPane().add(buscar_vendedor);
 		
-		JLabel lblNewLabel = new JLabel("VENDEDOR:");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNewLabel.setBounds(95, 104, 106, 13);
+		JLabel lblNewLabel = new JLabel("Vendedor");
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel.setBounds(75, 79, 106, 13);
 		Vendas.getContentPane().add(lblNewLabel);
 		
 		descVendedor = new JTextField();
-		descVendedor.setBounds(211, 103, 363, 19);
+		descVendedor.setBounds(75, 103, 533, 19);
 		Vendas.getContentPane().add(descVendedor);
 		descVendedor.setColumns(10);
 		
-		JLabel lblCliente = new JLabel("CLIENTE:");
-		lblCliente.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblCliente.setBounds(95, 147, 79, 13);
+		JLabel lblCliente = new JLabel("Cliente");
+		lblCliente.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblCliente.setBounds(75, 133, 79, 13);
 		Vendas.getContentPane().add(lblCliente);
 		
 		descCliente = new JTextField();
 		descCliente.setColumns(10);
-		descCliente.setBounds(211, 146, 363, 19);
+		descCliente.setBounds(75, 156, 533, 19);
 		Vendas.getContentPane().add(descCliente);
 		
-		JLabel lblProduto = new JLabel("PRODUTO:");
-		lblProduto.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblProduto.setBounds(95, 193, 106, 13);
+		JLabel lblProduto = new JLabel("Produto");
+		lblProduto.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblProduto.setBounds(75, 186, 106, 13);
 		Vendas.getContentPane().add(lblProduto);
 		
 		descProduto = new JTextField();
 		descProduto.setColumns(10);
-		descProduto.setBounds(211, 192, 363, 19);
+		descProduto.setBounds(75, 210, 533, 19);
 		Vendas.getContentPane().add(descProduto);
 		
-		JLabel lblPagamento = new JLabel("PAGAMENTO:");
-		lblPagamento.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblPagamento.setBounds(95, 513, 111, 13);
+		JLabel lblPagamento = new JLabel("Formas de pagamento");
+		lblPagamento.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblPagamento.setBounds(75, 483, 183, 25);
 		Vendas.getContentPane().add(lblPagamento);
 		
 //		JLabel lblCd = new JLabel("CÓD");
@@ -163,7 +163,7 @@ public class VendasVisao {
         //DefaultTableModel model = new DefaultTableModel(tm.getData1(), tm.getColumnNames());
         //table = new JTable(model);
         table = new JTable();
-        table.setBounds(95, 245, 514, 184);
+        table.setBounds(75, 249, 514, 184);
         table.setModel(modelProduto);
         table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         table.setFillsViewportHeight(true);
@@ -173,11 +173,14 @@ public class VendasVisao {
         
 		textField_3 = new JTextField();
 		textField_3.setColumns(10);
-		textField_3.setBounds(553, 442, 56, 19);
+		textField_3.setBounds(587, 443, 56, 25);
 		Vendas.getContentPane().add(textField_3);
 		
-		JButton btnNewButton_1_1 = new JButton("FINALIZAR COMPRA");
-		btnNewButton_1_1.setBounds(512, 508, 131, 21);
+		JButton btnNewButton_1_1 = new JButton("Finalizar compra");
+		btnNewButton_1_1.setBackground(Color.CYAN);
+		btnNewButton_1_1.setForeground(Color.BLACK);
+		btnNewButton_1_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnNewButton_1_1.setBounds(512, 507, 131, 25);
 		Vendas.getContentPane().add(btnNewButton_1_1);
 		
 		List nome_produto = new List();
@@ -201,20 +204,27 @@ public class VendasVisao {
 		final DefaultComboBoxModel modelPagamento = new DefaultComboBoxModel(frm_pagamento);
 		@SuppressWarnings("rawtypes")
 		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(modelPagamento);
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Selecionar ...", "PIX", "Dinheiro", "Crédito", "Débito"}));
 		comboBox.setBackground(new Color(255, 255, 255));
 		comboBox.setForeground(new Color(0, 0, 0));
-		comboBox.setBounds(205, 508, 131, 22);
+		comboBox.setBounds(75, 509, 131, 24);
 		Vendas.getContentPane().add(comboBox);
 		
 		JButton buscar_cliente = new JButton("");
 		buscar_cliente.setIcon(new ImageIcon("C:\\Users\\jacks\\OneDrive - Associacao Antonio Vieira\\Área de Trabalho\\UNISINOS\\3° SEMESTRE\\POO\\JAVA\\CRM_Uni\\imagens\\lupa16.png"));
-		buscar_cliente.setBounds(584, 143, 25, 25);
+		buscar_cliente.setBounds(618, 150, 25, 25);
 		Vendas.getContentPane().add(buscar_cliente);
 		
 		JButton buscar_produto = new JButton("");
 		buscar_produto.setIcon(new ImageIcon("C:\\Users\\jacks\\OneDrive - Associacao Antonio Vieira\\Área de Trabalho\\UNISINOS\\3° SEMESTRE\\POO\\JAVA\\CRM_Uni\\imagens\\lupa16.png"));
-		buscar_produto.setBounds(584, 189, 25, 25);
+		buscar_produto.setBounds(618, 204, 25, 25);
 		Vendas.getContentPane().add(buscar_produto);
+		
+		JLabel lblVendas = new JLabel("VENDAS");
+		lblVendas.setForeground(Color.CYAN);
+		lblVendas.setFont(new Font("Tahoma", Font.BOLD, 35));
+		lblVendas.setEnabled(false);
+		lblVendas.setBounds(265, 21, 194, 50);
+		Vendas.getContentPane().add(lblVendas);
 	}
 }
