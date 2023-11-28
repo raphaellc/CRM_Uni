@@ -11,7 +11,6 @@ public class VendasModelo {
 	
 	private List<VendasDto> vendas;
     private VendasDao vendas_dao;
-    
 
     public VendasModelo() {
   
@@ -20,13 +19,10 @@ public class VendasModelo {
     
     
     public boolean adicionarVenda(VendasDto contato) {
-    		if (contato != null) {	
-    			return false;	
-    			} 
-    		
     	vendas.add(contato);
         return vendas_dao.adicionarVendas(contato);
     }
+    
     
     public VendasDto buscarVenda(int id_venda) {
     	List<VendasDto> listaVendas = vendas_dao.listarVendas();

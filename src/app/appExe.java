@@ -9,7 +9,7 @@ import visoes.BuscaProdutoVisao;
 import visoes.BuscaVendedorVisao;
 import visoes.VendasVisao;
 
-public class Teste2 {
+public class appExe {
 
 	public static void main(String[] args) {
 		
