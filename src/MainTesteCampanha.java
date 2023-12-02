@@ -5,7 +5,7 @@ import src.dto.AnaliseCampanhaDto;
 
 import java.util.List;
 
-public class TesteMain {
+public class MainTesteCampanha {
 
     public static void main(String[] args) {
 
