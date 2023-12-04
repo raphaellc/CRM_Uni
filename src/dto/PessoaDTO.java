@@ -119,7 +119,7 @@ public class PessoaDTO {
 
     @Override
     public String toString() {
-        return format("%s: %-30s %s: %-30s %s: %s",
+        return format("%s: %s;\t %s: %s;\t %s: %s;\t",
             "Nome", getNome(),
             "Ocupação", getOcupacao(),
             "Tipo pessoa", getTipo_pessoa());
