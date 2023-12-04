@@ -133,7 +133,23 @@ public class TelaAtualizarAtendimento extends JFrame {
 
                     boolean atualizacaoAtendimento = atendimentoDao.atualizarAtendimento(atendimentoAtualizado);
 
-                    if (atualizacaoAtendimento) {
+                    dtos.StatusAtendimentoDto statusAtendimentoDto = new dtos.StatusAtendimentoDto();
+                    statusAtendimentoDto.setDesc(novoStatus);
+
+                    int novoStatusAtendimento = atendimentoDao.atualizarStatusAtendimento(statusAtendimentoDto);
+
+
+                    dtos.ProgressoAtendimentoDto progressoAtendimentoDto = new dtos.ProgressoAtendimentoDto();
+                    progressoAtendimentoDto.setIdCasoAtendimento(Integer.parseInt(txtIdAtendimento.getText()));
+                    progressoAtendimentoDto.setDescAtualizacao(descricaoNovoStatus);
+                    progressoAtendimentoDto.setDataAtualizacao(LocalDate.now());
+                    progressoAtendimentoDto.setIdStatusCasoAtendimento(novoStatusAtendimento);
+
+                    boolean novoProgressoAtendimento = atendimentoDao.atualizarProgAtendimento(progressoAtendimentoDto);
+
+
+
+                    if (atualizacaoAtendimento && novoStatusAtendimento != -1 && novoProgressoAtendimento) {
                         JOptionPane.showMessageDialog(null, "Atendimento atualizado com sucesso!");
                     } else {
                         JOptionPane.showMessageDialog(null, "Falha ao atualizar o atendimento.");
@@ -157,7 +173,6 @@ public class TelaAtualizarAtendimento extends JFrame {
 
                     if (fechamentoAtendimento) {
                         JOptionPane.showMessageDialog(null, "Atendimento Encerrado!");
-                        dispose(); // Fecha a janela
                     } else {
                         JOptionPane.showMessageDialog(null, "Falha ao fechar o atendimento.");
                     }
@@ -190,7 +205,7 @@ public class TelaAtualizarAtendimento extends JFrame {
 
                     if (atendimentoDto != null) {
 
-                        txtIdPessoaSolicitante.setText(String.valueOf(atendimentoDto.getIdAtendimento()));
+                        txtIdPessoaSolicitante.setText(String.valueOf(atendimentoDto.getIdPessoa()));
                         txtPessoaResponsavel.setText(String.valueOf(atendimentoDto.getIdResponsavel()));
                         txtDataAbertura.setText(atendimentoDto.getDtAbertura().toString());
                         txtDescricaoProblema.setText(atendimentoDto.getDescProblema());

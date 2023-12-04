@@ -17,7 +17,6 @@ public class StatusAtendimentoDto {
     public void setIdStatusAtendimento(int id_status_atendimento) {
         this.id_status_atendimento = id_status_atendimento;
     }
-
     public String getDesc() {
         return desc;
     }
@@ -25,4 +24,21 @@ public class StatusAtendimentoDto {
     public void setDesc(String desc) {
         this.desc = desc;
     }
+
+    public String getDescStatusAtendimento() {
+        return desc;
+    }
+
+
+
+    public void getDescStatusAtendimento(String desc) {
+        this.desc = desc;
+    }
+
+    public String toString() {
+        return "idStatusAtendimento: " + id_status_atendimento +
+                "Descrição do Status de Atendimento: " + desc;
+    }
+
 }
+

@@ -1,5 +1,6 @@
 package visoes;
-
+import java.util.Arrays;
+import java.util.stream.Collectors;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -8,15 +9,15 @@ import java.util.List;
 import daos.AtendimentoDao;
 import dtos.AtendimentoDto;
 
-public class TelaVisualizarAtendimento extends JFrame {
+public class TelaHistoricoAlteracoesAtendimento extends JFrame {
 
     private JList<String> listaAtendimentos;
     private JButton btnVisualizar;
 
     private AtendimentoDao atendimentoDao;
 
-    public TelaVisualizarAtendimento() {
-        setTitle("Consulta de Atendimento");
+    public TelaHistoricoAlteracoesAtendimento() {
+        setTitle("Lista de Atendimentos");
         setSize(400, 450);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
@@ -26,7 +27,7 @@ public class TelaVisualizarAtendimento extends JFrame {
         JScrollPane scrollPane = new JScrollPane(listaAtendimentos);
         panel.add(scrollPane, BorderLayout.CENTER);
 
-        btnVisualizar = new JButton("Visualizar Atendimento");
+        btnVisualizar = new JButton("Visualizar Histórico");
         panel.add(btnVisualizar, BorderLayout.SOUTH);
 
         add(panel);
@@ -37,9 +38,9 @@ public class TelaVisualizarAtendimento extends JFrame {
                 String selectedId = listaAtendimentos.getSelectedValue();
                 if (selectedId != null) {
                     int idAtendimento = Integer.parseInt(selectedId);
-                    mostrarDetalhesAtendimento(idAtendimento);
+                    mostrarHistoricoAtendimento(idAtendimento);
                 } else {
-                    JOptionPane.showMessageDialog(TelaVisualizarAtendimento.this, "Selecione um atendimento para visualizar.");
+                    JOptionPane.showMessageDialog(TelaHistoricoAlteracoesAtendimento.this, "Selecione um atendimento para visualizar o histórico de alterações.");
                 }
             }
         });
@@ -55,23 +56,24 @@ public class TelaVisualizarAtendimento extends JFrame {
         listaAtendimentos.setModel(listModel);
     }
 
-    private void mostrarDetalhesAtendimento(int idAtendimento) {
+    private void mostrarHistoricoAtendimento(int idAtendimento) {
         AtendimentoDto atendimentoSelecionado = atendimentoDao.buscarAtendimentoPorId(idAtendimento);
 
-        JFrame detailsFrame = new JFrame("Detalhes do Atendimento");
+        JFrame detailsFrame = new JFrame("Histórico do Atendimento");
         detailsFrame.setSize(400, 300);
-        System.out.println("Valor de dtResolucao do banco de dados: " + atendimentoSelecionado.getDtResolucao());
         JTextArea textArea = new JTextArea();
         textArea.setEditable(false);
-        textArea.append("ID de Atendimento: " + atendimentoSelecionado.getIdAtendimento() + "\n");
-        textArea.append("Prioridade do Atendimento: " + atendimentoSelecionado.getPrioridadeCasoString() + "\n");
-        textArea.append("Data de Abertura: " + atendimentoSelecionado.getDtAbertura() + "\n");
-        textArea.append("ID da Pessoa Responsavel: " + atendimentoSelecionado.getIdResponsavel() + "\n");
-        textArea.append("ID da Pessoa Solicitante: " + atendimentoSelecionado.getIdPessoa() + "\n");
-        textArea.append("ID da Categoria: " + atendimentoSelecionado.getIdCategoria() + "\n");
-        textArea.append("Descrição do atendimento: " + atendimentoSelecionado.getDescProblema() + "\n");
+        String historicoProgressoAtendimento = atendimentoDao.listarProgressoPorId(idAtendimento);
+
+        int[] listaIdsStatus = atendimentoDao.listarIdStatusPorIdAtendimento(idAtendimento);
+        String[] historicoStatusAtendimento = atendimentoDao.listarDescricaoStatusPorIds(listaIdsStatus);
+        textArea.append("Histórico de Status do Atendimento"+"\n");
+        textArea.append(Arrays.toString(historicoStatusAtendimento) + "\n");
+
+        textArea.append("Descrições dos Status"+"\n");
+        textArea.append(historicoProgressoAtendimento);
         textArea.append("Status Atual do Atendimento: " + atendimentoSelecionado.getStatusAtualizacao() + "\n");
-        textArea.append("Descrição do Atual Status: " + atendimentoSelecionado.getDescAtualizacao() + "\n");
+        textArea.append("Descrição do Status Atual: " + atendimentoSelecionado.getDescAtualizacao() + "\n");
 
         if (atendimentoSelecionado.getDtAtualizacao() == null) {
             textArea.append("Data da ultima atualização: Atendimento sem atualização\n");
@@ -97,7 +99,7 @@ public class TelaVisualizarAtendimento extends JFrame {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                TelaVisualizarAtendimento frame = new TelaVisualizarAtendimento();
+                TelaHistoricoAlteracoesAtendimento frame = new TelaHistoricoAlteracoesAtendimento();
                 frame.setVisible(true);
 
                 AtendimentoDao atendimentoDao = new AtendimentoDao();

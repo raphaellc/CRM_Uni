@@ -28,6 +28,6 @@ public class Atendimento {
     }
 
     public boolean removerAtendimento(int id_atendimento){
-    return atendimentoDao.removerAtendimento(id_atendimento);
+    return atendimentoDao.fecharAtendimento(id_atendimento);
     }
 }

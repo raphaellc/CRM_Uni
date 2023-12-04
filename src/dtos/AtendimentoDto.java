@@ -50,12 +50,6 @@ public class AtendimentoDto {
     public void setIdResponsavel(int idResponsavel) {
         this.idResponsavel = idResponsavel;
     }
-    public int getIdProduto() {
-        return idProduto;
-    }
-    public void setIdProduto(int idProduto) {
-        this.idProduto = idProduto;
-    }
     public LocalDate getDtAbertura() {
         return dtAbertura;
     }
