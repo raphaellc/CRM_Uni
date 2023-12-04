@@ -54,6 +54,8 @@ public class TelaListagemContato extends JFrame {
                     this.dispose();
                 }
 
+                // TODO: Mesmo if da de cima
+
             } else {
                 JOptionPane.showMessageDialog(this, "Nenhuma pessoa selecionada! =(");
             }

@@ -1,5 +1,7 @@
 package dto;
 
+import static java.lang.String.format;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -117,6 +119,9 @@ public class PessoaDTO {
 
     @Override
     public String toString() {
-        return "Nome: \t" + getNome() + "\t Ocupação: \t" + getOcupacao();
+        return format("%s: %-30s %s: %-30s %s: %s",
+            "Nome", getNome(),
+            "Ocupação", getOcupacao(),
+            "Tipo pessoa", getTipo_pessoa());
     }
 }
