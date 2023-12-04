@@ -17,26 +17,29 @@ public class DisplayData extends JFrame implements ActionListener {
     PreparedStatement pst;
     String ids;
     static JTable table;
-    String[] columnNames = {"User name", "Email", "Password", "Country"};
+    String[] columnNames = {"CÓD", "DESCRIÇÃO", "QTD", "VALOR"};
     String from;
     DisplayData() {
-        l0 = new JLabel("Fatching Employee Information");
-        l0.setForeground(Color.red);
+        l0 = new JLabel("Busca produto");
+        l0.setForeground(Color.black);
         l0.setFont(new Font("Serif", Font.BOLD, 20));
-        l1 = new JLabel("Select name");
-        b1 = new JButton("submit");
+        l1 = new JLabel("Código do produto");
+        b1 = new JButton("Buscar");
+        b1.setBackground(new Color(255, 255, 255));
         l0.setBounds(100, 50, 350, 40);
-        l1.setBounds(75, 110, 75, 20);
+        l1.setBounds(75, 110, 130, 20);
         b1.setBounds(150, 150, 150, 20);
         b1.addActionListener(this);
-        setTitle("Fetching Student Info From DataBase");
-        setLayout(null);
+        setTitle("Buscando no banco de dados");
+        getContentPane().setLayout(null);
         setVisible(true);
         setSize(500, 500);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        add(l0);
-        add(l1);;
-        add(b1);
+        getContentPane().add(l0);
+        getContentPane().add(l1);;
+        getContentPane().add(b1);
+        
+        //ARRUMAR A CONEXAO COM O BANCO E BUSCA
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
             con = DriverManager.getConnection("jdbc:oracle:thin:@mcndesktop07:1521:xe", "sandeep", "welcome");
@@ -48,8 +51,8 @@ public class DisplayData extends JFrame implements ActionListener {
                 v.add(ids);
             }
             c1 = new JComboBox(v);
-            c1.setBounds(150, 110, 150, 20);
-            add(c1);
+            c1.setBounds(217, 111, 150, 20);
+            getContentPane().add(c1);
             st.close();
             rs.close();
         } catch (Exception e) {
@@ -63,7 +66,7 @@ public class DisplayData extends JFrame implements ActionListener {
     public void showTableData() {
         frame1 = new JFrame("Database Search Result");
         frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame1.setLayout(new BorderLayout());
+        frame1.getContentPane().setLayout(new BorderLayout());
         //TableModel tm = new TableModel();
         DefaultTableModel model = new DefaultTableModel();
         model.setColumnIdentifiers(columnNames);
@@ -80,20 +83,20 @@ public class DisplayData extends JFrame implements ActionListener {
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         from = (String) c1.getSelectedItem();
         //String textvalue = textbox.getText();
-        String uname = "";
-        String email = "";
-        String pass = "";
-        String cou = "";
+        String cod = "";
+        String descricao = "";
+        String qtd = "";
+        String valor = "";
         try {
             pst = con.prepareStatement("select * from emp where UNAME='" + from + "'");
             ResultSet rs = pst.executeQuery();
             int i = 0;
             if (rs.next()) {
-                uname = rs.getString("uname");
-                email = rs.getString("umail");
-                pass = rs.getString("upass");
-                cou = rs.getString("ucountry");
-                model.addRow(new Object[]{uname, email, pass, cou});
+                cod = rs.getString("uname");
+                descricao = rs.getString("umail");
+                qtd = rs.getString("upass");
+                valor = rs.getString("ucountry");
+                model.addRow(new Object[]{cod, descricao, qtd, valor});
                 i++;
             }
             if (i < 1) {
@@ -107,7 +110,7 @@ public class DisplayData extends JFrame implements ActionListener {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-        frame1.add(scroll);
+        frame1.getContentPane().add(scroll);
         frame1.setVisible(true);
         frame1.setSize(400, 300);
     }
