@@ -132,6 +132,40 @@ public class PessoaDAO extends BaseDAO {
         });
     }
 
+    public PessoaDTO atualizarContato(final PessoaDTO pessoa) {
+        return execute((connection) -> {
+            ResultSet pessoaResultSet = null;
+            final PreparedStatement pessoaStmt = connection.prepareStatement(ATUALIZAR_PESSOA);
+
+            pessoaStmt.setString(1, pessoa.getNome());
+            pessoaStmt.setDate(2, Date.valueOf(pessoa.getDt_nasc()));
+            pessoaStmt.setString(3, pessoa.getCelular());
+            pessoaStmt.setString(4, pessoa.getEmail());
+            pessoaStmt.setString(5, pessoa.getOcupacao());
+            pessoaStmt.setLong(6, pessoa.getId_pessoa());
+
+            pessoaStmt.executeUpdate();
+
+            if (nonNull(pessoa.getEndereco())) {
+                final EnderecoDTO endereco = pessoa.getEndereco();
+                final PreparedStatement enderecoStmt = connection.prepareStatement(ATUALIZAR_ENDERECO);
+
+                enderecoStmt.setString(1, endereco.getLogradouro());
+                enderecoStmt.setString(2, endereco.getNumero());
+                enderecoStmt.setString(3, endereco.getComplemento());
+                enderecoStmt.setString(4, endereco.getBairro());
+                enderecoStmt.setString(5, endereco.getCidade());
+                enderecoStmt.setString(6, endereco.getEstado());
+                enderecoStmt.setString(7, endereco.getCep());
+                enderecoStmt.setLong(8, endereco.getId_endereco());
+
+                enderecoStmt.executeUpdate();
+            }
+
+            return pessoa;
+        });
+    }
+
     public PessoaDTO consultarID(final Long ID){
         return execute((connection) -> {
             final Statement statement = connection.createStatement();

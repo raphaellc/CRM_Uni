@@ -47,6 +47,25 @@ public class PessoaModelo {
         return nonNull(retornoConsultar);
     }
 
+    public boolean atualizar(final PessoaDTO dados) {
+
+        if (nonNull(dados.getEndereco())) {
+            final EnderecoDTO endereco = dados.getEndereco();
+
+            if (isEmptyString(endereco.getEstado())) {
+                return false;
+            }
+
+            if (isEmptyString(endereco.getCidade())) {
+                return false;
+            }
+        }
+
+        final PessoaDTO retornoConsultar = pessoaDAO.atualizarContato(dados);
+
+        return nonNull(retornoConsultar);
+    }
+
     public List<PessoaDTO> consultarTodos() {
         return pessoaDAO.consultarTodos();
     }
