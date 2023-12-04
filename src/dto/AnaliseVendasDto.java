@@ -13,7 +13,7 @@ public class AnaliseVendasDto {
     private int quantidade_produtos;
 
     private double valor_produto;
-    private int fluxo_saida_produto;
+    private int qtd_vendas_produto;
 
     public AnaliseVendasDto(){
 
@@ -91,12 +91,12 @@ public class AnaliseVendasDto {
         this.valor_produto = valor_produto;
     }
 
-    public int getFluxoSaidaProduto() {
-        return fluxo_saida_produto;
+    public int getQtd_vendas_produto() {
+        return qtd_vendas_produto;
     }
 
-    public void setFluxoSaidaProduto(int fluxo_saida_produto) {
-        this.fluxo_saida_produto = fluxo_saida_produto;
+    public void setQtd_vendas_produto(int qtd_vendas_produto) {
+        this.qtd_vendas_produto = qtd_vendas_produto;
     }
 
 }

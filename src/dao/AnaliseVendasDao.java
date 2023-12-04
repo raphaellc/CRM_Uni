@@ -8,36 +8,38 @@ import java.util.List;
 
 public class AnaliseVendasDao {
 
-/**
-    public void boolean identificaProdutoMaiorValor(AnaliseVendasDto analiseVendasDto) {
+    /**
+     * public void boolean identificaProdutoMaiorValor(AnaliseVendasDto analiseVendasDto) {
+     * <p>
+     * try {
+     * connection = this.con.conectar();
+     * String sql = "INSERT INTO analiseVendas VALUES (?, ?, ?, ?, ?)"; //teste
+     * PreparedStatement ps = connection.prepareStatement(sql);
+     * <p>
+     * ps.setInt(1, analiseVendasDto.getId_venda());
+     * ps.setInt(2, analiseVendasDto.getId_produto());
+     * ps.setDouble(3, analiseVendasDto.getValorProduto());
+     * <p>
+     * } catch{
+     * <p>
+     * }
+     * System.out.println("Aqui");
+     * }
+     **/
 
-         try {
-         connection = this.con.conectar();
-         String sql = "INSERT INTO analiseVendas VALUES (?, ?, ?, ?, ?)"; //teste
-         PreparedStatement ps = connection.prepareStatement(sql);
 
-         ps.setInt(1, analiseVendasDto.getId_venda());
-         ps.setInt(2, analiseVendasDto.getId_produto());
-         ps.setDouble(3, analiseVendasDto.getValorProduto());
-
-         } catch{
-
-         }
-        System.out.println("Aqui");
-    }**/
-
-/**
     public AnaliseVendasDto listarVendas() {
         List<AnaliseVendasDto> listarVendas = new ArrayList<>();
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
+        Connection conexao = Conexao.conectar();
 
 
         try {
-            Connection conn = Conexao.conectar();
+
 
             String sql = "SELECT id_venda, valor_venda, data_venda, status, quantidade_produtos, id_vendedor FROM vendas WHERE id_venda = ?";
-            preparedStatement = conn.prepareStatement(sql);
+            preparedStatement = conexao.prepareStatement(sql);
             resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
@@ -55,8 +57,18 @@ public class AnaliseVendasDao {
         } catch (SQLException e) {
             e.printStackTrace();
 
-        } return null;
- **/
+        } finally {
+            // Fecha a conexão após o uso
+            try {
+                conexao.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+    }
+}
+
 
     /**
     public void buscarVendas(int id_venda) {
@@ -66,5 +78,3 @@ public class AnaliseVendasDao {
         String sql = "SELECT id_venda, valor_venda, dt_venda, status FROM vendas WHERE id_venda = ?"
 
     } **/
-
-}

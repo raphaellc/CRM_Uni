@@ -3,20 +3,18 @@ package src.modelo;
 import src.dto.AnaliseVendasDto;
 import src.dao.AnaliseVendasDao;
 import src.dao.Conexao;
-
-import java.util.Collections;
 import java.util.List;
 
 public class AnaliseVendasModelo {
 
-    /**
+
     private AnaliseVendasDao analise_vendas_dao;
     private Conexao conexao;
     private List<AnaliseVendasDto> lista_de_produtos;
 
     public AnaliseVendasModelo(){
-        AnaliseVendasDao analise_vendas_dao = new AnaliseVendasDao(conexao);
-        AnaliseVendasDao lista_de_produtos = new AnaliseVendasDao(conexao);
+        AnaliseVendasDao analise_vendas_dao = new AnaliseVendasDao();
+        AnaliseVendasDao lista_de_produtos = new AnaliseVendasDao();
     }
 
     public void AnaliseDeVenda(List<AnaliseVendasDto> lista_de_produtos) {
@@ -28,15 +26,15 @@ public class AnaliseVendasModelo {
             return null;
         }
 
-        AnaliseVendasDto produto_com_maior_fluxo = lista_de_produtos.get(0);
+        AnaliseVendasDto produto_mais_vendido = lista_de_produtos.get(0);
 
         for (AnaliseVendasDto produto : lista_de_produtos) {
-            if (produto.getFluxoSaidaProduto() > produto_com_maior_fluxo.getFluxoSaidaProduto()) {
-                produto_com_maior_fluxo = produto;
+            if (produto.getQtd_vendas_produto() > produto_mais_vendido.getQtd_vendas_produto()) {
+                produto_mais_vendido = produto;
             }
         }
 
-        return produto_com_maior_fluxo;
+        return produto_mais_vendido;
     }
 
     //Método para verificar o produto com o maior valor:
@@ -72,7 +70,7 @@ public class AnaliseVendasModelo {
     }
 
     public List<AnaliseVendasDto> listarVendas() {
-        return Collections.singletonList(analise_vendas_dao.listarVendas()); //arrumar
+        return (List<AnaliseVendasDto>) analise_vendas_dao.listarVendas();
     }
-     **/
+
 }
