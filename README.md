@@ -72,6 +72,9 @@ CREATE TABLE `atendimento` (
   `desc_problema` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `id_categoria` int NOT NULL,
   `id_prioridade` int DEFAULT NULL,
+  `status_atualizacao` VARCHAR(150) NULL DEFAULT 'Recém criado',
+  `dt_atualizacao` DATE NULL DEFAULT NULL,
+  `desc_atualizacao` VARCHAR(255) NULL DEFAULT 'Atendimento recém criado',
   PRIMARY KEY (`id_atendimento`),
   KEY `id_pessoa_idx` (`id_pessoa`),
   KEY `id_pessoa_responsavel_idx` (`id_pessoa_responsavel`),
@@ -163,7 +166,7 @@ CREATE TABLE `atendimento` (
 ```
   CREATE TABLE `status_atendimento` (
   `id_status_atendimento` int NOT NULL AUTO_INCREMENT,
-  `descricao` varchar(45) NOT NULL,
+  `descricao` varchar(255) NOT NULL,
   PRIMARY KEY (`id_status_atendimento`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3
 ```
