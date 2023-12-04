@@ -9,7 +9,7 @@ public class Conexao {
     public static Connection conectar() {
         String url = "jdbc:mysql://localhost:3306/crmuni";
         String usuario = "root";
-        String senha = "1234";
+        String senha = "3306";
 
         try {
             // Carrega o driver JDBC
