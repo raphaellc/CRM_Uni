@@ -6,21 +6,21 @@ import java.text.SimpleDateFormat;
 public class AnaliseAtendimentoModelo {
 
     private String observacoes;
-    private double valorAtendimento;
+    private double valor_resultante;
     private String status;
-    private Date dataPrimeiroContato;
+    private Date dt_primeiro_contato;
     private String responsavel;
-    private int duracaoAtendimento; // em minutos
+    private int duracao_atendimento; // em minutos
 
     // Construtor
-    public AnaliseAtendimentoModelo(String observacoes, double valorAtendimento, String status,
-                                Date dataPrimeiroContato, String responsavel, int duracaoAtendimento) {
+    public AnaliseAtendimentoModelo(String observacoes, double valor_resultante, String status,
+                                Date dt_primeiro_contato, String responsavel, int duracao_atendimento) {
         this.observacoes = observacoes;
-        this.valorAtendimento = valorAtendimento;
+        this.valor_resultante = valor_resultante;
         this.status = status;
-        this.dataPrimeiroContato = dataPrimeiroContato;
+        this.dt_primeiro_contato = dt_primeiro_contato;
         this.responsavel = responsavel;
-        this.duracaoAtendimento = duracaoAtendimento;
+        this.duracao_atendimento = duracao_atendimento;
     }
 
     // Métodos getters e setters
@@ -33,12 +33,12 @@ public class AnaliseAtendimentoModelo {
         this.observacoes = observacoes;
     }
 
-    public double getValorAtendimento() {
-        return valorAtendimento;
+    public double getValor_resultante() {
+        return valor_resultante;
     }
 
-    public void setValorAtendimento(double valorAtendimento) {
-        this.valorAtendimento = valorAtendimento;
+    public void setValor_resultante(double valor_resultante) {
+        this.valor_resultante = valor_resultante;
     }
 
     public String getStatus() {
@@ -49,12 +49,12 @@ public class AnaliseAtendimentoModelo {
         this.status = status;
     }
 
-    public Date getDataPrimeiroContato() {
-        return dataPrimeiroContato;
+    public Date getDt_primeiro_contato() {
+        return dt_primeiro_contato;
     }
 
-    public void setDataPrimeiroContato(Date dataPrimeiroContato) {
-        this.dataPrimeiroContato = dataPrimeiroContato;
+    public void setDt_primeiro_contato(Date dt_primeiro_contato) {
+        this.dt_primeiro_contato = dt_primeiro_contato;
     }
 
     public String getResponsavel() {
@@ -65,12 +65,12 @@ public class AnaliseAtendimentoModelo {
         this.responsavel = responsavel;
     }
 
-    public int getDuracaoAtendimento() {
-        return duracaoAtendimento;
+    public int getDuracao_atendimento() {
+        return duracao_atendimento;
     }
 
-    public void setDuracaoAtendimento(int duracaoAtendimento) {
-        this.duracaoAtendimento = duracaoAtendimento;
+    public void setDuracao_atendimento(int duracao_atendimento) {
+        this.duracao_atendimento = duracao_atendimento;
     }
 
     // Método para gerar relatório
@@ -84,12 +84,11 @@ public class AnaliseAtendimentoModelo {
                         "Data do Primeiro Contato: %s\n" +
                         "Responsável: %s\n" +
                         "Duração do Atendimento: %d minutos",
-                observacoes, valorAtendimento, status,
-                formatoData.format(dataPrimeiroContato), responsavel, duracaoAtendimento);
+                observacoes, valor_resultante, status,
+                formatoData.format(dt_primeiro_contato), responsavel, duracao_atendimento);
     }
 
     public static void main(String[] args) {
-        // Exemplo de uso da classe
         Date dataContato = new Date();
         RelatorioAtendimento relatorio = new RelatorioAtendimento("Cliente satisfeito", 150.0, "Concluído",
                 dataContato, "Atendente1", 30);

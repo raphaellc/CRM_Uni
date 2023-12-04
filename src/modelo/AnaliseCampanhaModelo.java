@@ -6,8 +6,6 @@ public class AnaliseCampanhaModelo {
     private String nome_campanha;
     private Date dt_inicio_campanha;
     private Date dtFimCampanha;
-    private int totalCliques;
-    private int totalConversoes;
 
     // Construtor
     public RelatorioCampanha(int id_campanha, String nome_campanha, Date dt_inicio_campanha, Date dt_fim_campanha) {
@@ -15,8 +13,6 @@ public class AnaliseCampanhaModelo {
         this.nome_campanha = nome_campanha;
         this.dt_inicio_campanha = dt_inicio_campanha;
         this.dt_fim_campanha = dt_fim_campanha;
-        this.totalCliques = 0;
-        this.totalConversoes = 0;
     }
 
     // Métodos getters e setters
@@ -68,8 +64,6 @@ public class AnaliseCampanhaModelo {
     public static void main(String[] args) {
         // Exemplo de uso da classe
         RelatorioCampanha relatorio = new RelatorioCampanha(1, "Campanha de Verão", new Date(), new Date());
-        relatorio.setTotalCliques(100);
-        relatorio.setTotalConversoes(10);
 
         // Gerar e exibir o relatório
         String relatorioFinal = relatorio.gerarRelatorio();
