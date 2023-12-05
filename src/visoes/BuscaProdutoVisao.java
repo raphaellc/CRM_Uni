@@ -82,7 +82,7 @@ public class BuscaProdutoVisao {
 		
 		JButton terminarCompra = new JButton("Finalizar Compra");
 		terminarCompra.setBackground(Color.CYAN);
-		terminarCompra.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 14));
+		terminarCompra.setFont(new Font("Tahoma", Font.BOLD, 14));
 		terminarCompra.setBounds(466, 373, 168, 25);
 		BuscaProduto.getContentPane().add(terminarCompra);
 		

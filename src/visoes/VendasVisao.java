@@ -30,6 +30,7 @@ import java.awt.Color;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
 
 public class VendasVisao {
 
@@ -44,6 +45,7 @@ public class VendasVisao {
 	String from;
 	PreparedStatement pst;
 	Connection con;
+	private JTextField textField;
 	
 	public JFrame getFrame() {
 		return Vendas;
@@ -79,6 +81,7 @@ public class VendasVisao {
 	@SuppressWarnings("unchecked")
 	private void initialize() {
 		Vendas = new JFrame();
+		Vendas.setTitle("VENDA");
 		Vendas.setBackground(new Color(255, 255, 255));
 		Vendas.setBounds(100, 100, 800, 600);
 		Vendas.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -93,42 +96,42 @@ public class VendasVisao {
 			}
 		});
 		buscar_vendedor.setIcon(new ImageIcon("C:\\Users\\jacks\\OneDrive - Associacao Antonio Vieira\\Área de Trabalho\\UNISINOS\\3° SEMESTRE\\POO\\JAVA\\CRM_Uni\\imagens\\lupa16.png"));
-		buscar_vendedor.setBounds(584, 100, 25, 25);
+		buscar_vendedor.setBounds(620, 82, 25, 25);
 		Vendas.getContentPane().add(buscar_vendedor);
 		
 		JLabel lblNewLabel = new JLabel("VENDEDOR:");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNewLabel.setBounds(95, 104, 106, 13);
+		lblNewLabel.setBounds(131, 88, 106, 13);
 		Vendas.getContentPane().add(lblNewLabel);
 		
 		descVendedor = new JTextField();
-		descVendedor.setBounds(211, 103, 363, 19);
+		descVendedor.setBounds(247, 85, 363, 19);
 		Vendas.getContentPane().add(descVendedor);
 		descVendedor.setColumns(10);
 		
 		JLabel lblCliente = new JLabel("CLIENTE:");
 		lblCliente.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblCliente.setBounds(95, 147, 79, 13);
+		lblCliente.setBounds(131, 131, 79, 13);
 		Vendas.getContentPane().add(lblCliente);
 		
 		descCliente = new JTextField();
 		descCliente.setColumns(10);
-		descCliente.setBounds(211, 146, 363, 19);
+		descCliente.setBounds(247, 128, 363, 19);
 		Vendas.getContentPane().add(descCliente);
 		
 		JLabel lblProduto = new JLabel("PRODUTO:");
 		lblProduto.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblProduto.setBounds(95, 193, 106, 13);
+		lblProduto.setBounds(131, 177, 106, 13);
 		Vendas.getContentPane().add(lblProduto);
 		
 		descProduto = new JTextField();
 		descProduto.setColumns(10);
-		descProduto.setBounds(211, 192, 363, 19);
+		descProduto.setBounds(247, 174, 363, 19);
 		Vendas.getContentPane().add(descProduto);
 		
 		JLabel lblPagamento = new JLabel("PAGAMENTO:");
 		lblPagamento.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblPagamento.setBounds(95, 513, 111, 13);
+		lblPagamento.setBounds(131, 513, 111, 13);
 		Vendas.getContentPane().add(lblPagamento);
 		
 //		JLabel lblCd = new JLabel("CÓD");
@@ -163,7 +166,7 @@ public class VendasVisao {
         //DefaultTableModel model = new DefaultTableModel(tm.getData1(), tm.getColumnNames());
         //table = new JTable(model);
         table = new JTable();
-        table.setBounds(95, 245, 514, 184);
+        table.setBounds(131, 255, 514, 184);
         table.setModel(modelProduto);
         table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         table.setFillsViewportHeight(true);
@@ -174,48 +177,76 @@ public class VendasVisao {
         
 		textField_3 = new JTextField();
 		textField_3.setColumns(10);
-		textField_3.setBounds(553, 442, 56, 19);
+		textField_3.setBounds(566, 452, 79, 19);
 		Vendas.getContentPane().add(textField_3);
 		
 		JButton btnNewButton_1_1 = new JButton("FINALIZAR COMPRA");
-		btnNewButton_1_1.setBounds(512, 508, 131, 21);
+		btnNewButton_1_1.setForeground(Color.BLACK);
+		btnNewButton_1_1.setBounds(450, 509, 195, 21);
 		Vendas.getContentPane().add(btnNewButton_1_1);
 		
-		List nome_produto = new List();
-		nome_produto.setBounds(158, 269, 365, 168);
-		Vendas.getContentPane().add(nome_produto);
-		
-		List cod_item = new List();
-		cod_item.setBounds(95, 269, 59, 168);
-		Vendas.getContentPane().add(cod_item);
-		
-		List qtd_item = new List();
-		qtd_item.setBounds(527, 269, 56, 168);
-		Vendas.getContentPane().add(qtd_item);
-		
-		List valor_item = new List();
-		valor_item.setBounds(587, 269, 56, 168);
-		Vendas.getContentPane().add(valor_item);
+//		List nome_produto = new List();
+//		nome_produto.setBounds(158, 269, 365, 168);
+//		Vendas.getContentPane().add(nome_produto);
+//		
+//		List cod_item = new List();
+//		cod_item.setBounds(95, 269, 59, 168);
+//		Vendas.getContentPane().add(cod_item);
+//		
+//		List qtd_item = new List();
+//		qtd_item.setBounds(527, 269, 56, 168);
+//		Vendas.getContentPane().add(qtd_item);
+//		
+//		List valor_item = new List();
+//		valor_item.setBounds(587, 269, 56, 168);
+//		Vendas.getContentPane().add(valor_item);
 		
 		String frm_pagamento[] = {"Forma de pagamento", "PIX", "Dinheiro", "Crédito", "Débito"};
 	    @SuppressWarnings({ "rawtypes" })
 		final DefaultComboBoxModel modelPagamento = new DefaultComboBoxModel(frm_pagamento);
 		@SuppressWarnings("rawtypes")
 		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(modelPagamento);
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Selecionar...", "PIX", "Dinheiro", "Crédito", "Débito"}));
 		comboBox.setBackground(new Color(255, 255, 255));
 		comboBox.setForeground(new Color(0, 0, 0));
-		comboBox.setBounds(205, 508, 131, 22);
+		comboBox.setBounds(241, 508, 131, 22);
 		Vendas.getContentPane().add(comboBox);
 		
 		JButton buscar_cliente = new JButton("");
 		buscar_cliente.setIcon(new ImageIcon("C:\\Users\\jacks\\OneDrive - Associacao Antonio Vieira\\Área de Trabalho\\UNISINOS\\3° SEMESTRE\\POO\\JAVA\\CRM_Uni\\imagens\\lupa16.png"));
-		buscar_cliente.setBounds(584, 143, 25, 25);
+		buscar_cliente.setBounds(620, 125, 25, 25);
 		Vendas.getContentPane().add(buscar_cliente);
 		
 		JButton buscar_produto = new JButton("");
 		buscar_produto.setIcon(new ImageIcon("C:\\Users\\jacks\\OneDrive - Associacao Antonio Vieira\\Área de Trabalho\\UNISINOS\\3° SEMESTRE\\POO\\JAVA\\CRM_Uni\\imagens\\lupa16.png"));
-		buscar_produto.setBounds(584, 189, 25, 25);
+		buscar_produto.setBounds(620, 171, 25, 25);
 		Vendas.getContentPane().add(buscar_produto);
+		
+		JButton btnNewButton_1_1_1 = new JButton("ADICIONAR PRODUTO");
+		btnNewButton_1_1_1.setBounds(450, 216, 195, 21);
+		Vendas.getContentPane().add(btnNewButton_1_1_1);
+		
+		JLabel lblQuantidade = new JLabel("QUANTIDADE:");
+		lblQuantidade.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblQuantidade.setBounds(131, 220, 111, 13);
+		Vendas.getContentPane().add(lblQuantidade);
+		
+		textField = new JTextField();
+		textField.setColumns(10);
+		textField.setBounds(247, 217, 79, 19);
+		Vendas.getContentPane().add(textField);
+		
+		JLabel lblTotal = new JLabel("TOTAL:");
+		lblTotal.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblTotal.setBounds(492, 455, 70, 13);
+		Vendas.getContentPane().add(lblTotal);
+		
+		JLabel lblVenda = new JLabel("VENDA");
+		lblVenda.setHorizontalAlignment(SwingConstants.CENTER);
+		lblVenda.setForeground(Color.CYAN);
+		lblVenda.setFont(new Font("Tahoma", Font.BOLD, 35));
+		lblVenda.setEnabled(false);
+		lblVenda.setBounds(323, 10, 131, 50);
+		Vendas.getContentPane().add(lblVenda);
 	}
 }
