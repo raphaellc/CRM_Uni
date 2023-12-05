@@ -16,12 +16,13 @@ public class Campanha {
     private final String nome;
     private final Date dtInicio;
     private final String dtFim;
-
+    private CampanhaDAO campanha_DAO;
     public Campanha(int idCampanha, String nome, Date dtInicio, String dtFim) {
         this.idCampanha = idCampanha;
         this.nome = nome;
         this.dtInicio = dtInicio;
         this.dtFim = dtFim;
+        this.campanha_DAO = new CampanhaDAO()
     }
 
     public int getIdCampanha() {
@@ -39,7 +40,7 @@ public class Campanha {
     public String getDtFim() {
         return dtFim;
     }
-
+    public List<CampanhaDTO> buscarTodasCampanhas(){return campanha_DAO.buscarTodasCampanhas()}
     @Override
     public String toString() {
         return "Campanha{" +

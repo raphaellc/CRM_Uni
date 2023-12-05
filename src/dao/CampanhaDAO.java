@@ -31,7 +31,27 @@ public class CampanhaDAO {
             e.printStackTrace();
         }
     }
+    public void atualizarStatusCampanha(int campanhaId, String novoStatus) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE campanha SET status = ? WHERE id_campanha = ?");
+            preparedStatement.setString(1, novoStatus);
+            preparedStatement.setInt(2, campanhaId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
+    public void atualizarProgressoCampanha(int campanhaId, int novoProgresso) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE campanha SET progresso = ? WHERE id_campanha = ?");
+            preparedStatement.setInt(1, novoProgresso);
+            preparedStatement.setInt(2, campanhaId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
     public List<CampanhaDTO> buscarTodasCampanhas() {
         List<CampanhaDTO> campanhas = new ArrayList<>();
         String query = "SELECT * FROM campanha";

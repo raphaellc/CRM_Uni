@@ -2,7 +2,7 @@ import dao.CampanhaDAO;
 import dao.StatusPessoaDAO;
 import dto.CampanhaDTO;
 import dto.StatusPessoaDTO;
-
+import Controladora;
 import java.util.List;
 
 import java.sql.Connection;
@@ -65,6 +65,34 @@ public class Main {
             e.printStackTrace();
         }
     }
+    public static void main(String[] args) {
+        // Criando uma instância do controlador de marketing
+        GerenteMarketingController gerenteMarketingController = new GerenteMarketingController();
+
+        // Criando dados para uma nova campanha
+        String objetivo = "Promoção de Aniversário";
+        Date dataInicio = new Date();
+        Date dataFim = new Date(dataInicio.getTime() + (7 * 24 * 60 * 60 * 1000)); // Adicionando uma semana à data de início
+        List<ClienteDTO> publicoAlvo = // Defina o público-alvo conforme necessário;
+                String conteudo = "Descontos especiais para clientes fiéis!";
+
+        // Criando uma nova campanha usando o controlador
+        gerenteMarketingController.campanhaModelo.criarNovaCampanha(objetivo, dataInicio, dataFim, publicoAlvo, conteudo);
+
+        // Exemplo de como buscar todas as campanhas e exibi-las
+        List<CampanhaDTO> todasCampanhas = gerenteMarketingController.campanhaModelo.buscarTodasCampanhas();
+        System.out.println("Todas as Campanhas:");
+        for (CampanhaDTO campanha : todasCampanhas) {
+            System.out.println(campanha);
+        }
+
+        // Exemplo de como analisar os resultados de uma campanha específica (supondo que exista pelo menos uma campanha)
+        if (!todasCampanhas.isEmpty()) {
+            gerenteMarketingController.campanhaModelo.analisarResultadosCampanha(todasCampanhas.get(0).getId()); // Substitua getId() pelo método real
+        }
+    }
+}
+
 }
 
 
