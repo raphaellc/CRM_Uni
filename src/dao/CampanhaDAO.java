@@ -52,6 +52,40 @@ public class CampanhaDAO {
             e.printStackTrace();
         }
     }
+    public void associarPublicoAlvo(int campanhaId, int statusPessoaId) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO campanha_publico_alvo (id_campanha, id_status_pessoa) VALUES (?, ?)");
+            preparedStatement.setInt(1, campanhaId);
+            preparedStatement.setInt(2, statusPessoaId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public List<StatusPessoaDTO> buscarPublicoAlvo(int campanhaId) {
+        List<StatusPessoaDTO> publicoAlvo = new ArrayList<>();
+        String query = "SELECT status_pessoa.* FROM status_pessoa " +
+                "JOIN campanha_publico_alvo ON status_pessoa.id_status_pessoa = campanha_publico_alvo.id_status_pessoa " +
+                "WHERE campanha_publico_alvo.id_campanha = ?";
+
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, campanhaId);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    StatusPessoaDTO statusPessoa = new StatusPessoaDTO();
+                    statusPessoa.setIdStatusPessoa(resultSet.getInt("id_status_pessoa"));
+                    statusPessoa.setDescricao(resultSet.getString("descricao"));
+                    publicoAlvo.add(statusPessoa);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return publicoAlvo;
+    }
+}
     public List<CampanhaDTO> buscarTodasCampanhas() {
         List<CampanhaDTO> campanhas = new ArrayList<>();
         String query = "SELECT * FROM campanha";

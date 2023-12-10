@@ -41,6 +41,9 @@ public class Campanha {
         return dtFim;
     }
     public List<CampanhaDTO> buscarTodasCampanhas(){return campanha_DAO.buscarTodasCampanhas()}
+    public void associarPublicoAlvo(List<StatusPessoaDTO> statusPessoaDTOList) {
+        for (StatusPessoaDTO statusPessoaDTO : statusPessoaDTOList) {
+            campanha_DAO.associarPublicoAlvo(idCampanha, statusPessoaDTO.getId());
     @Override
     public String toString() {
         return "Campanha{" +

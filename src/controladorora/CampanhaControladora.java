@@ -35,6 +35,25 @@ public class CampanhaControladora {
             novaCampanhaDTO.setDtFim(dtFim);
         }
     }
+    public void criarPublicoAlvo(int campanhaId, List<StatusPessoaDTO> statusPessoaDTOList) {
+        if (cargoPessoaDAO.hasRequiredRole(idCargoPessoa)) {
+            CampanhaDTO campanha = camp.getCampanhaById(campanhaId);
+            if (campanha != null) {
+                // Lógica para associar o público-alvo à campanha.
+                for (StatusPessoaDTO statusPessoaDTO : statusPessoaDTOList) {
+                    StatusPessoaDTO existingStatus = statusPessoaDAO.getStatusPessoaById(statusPessoaDTO.getId());
+                    if (existingStatus != null) {
+                        campanhaDAO.adicionarPublicoAlvo(campanhaId, statusPessoaDTO.getId());
+                        // Outras lógicas necessárias...
+                    } else {
+                        System.out.println("Status de pessoa não encontrado para ID: " + statusPessoaDTO.getId());
+                        // Lidar com o caso em que o status de pessoa não existe
+                    }
+                }
+            }
+        }
+    }
+
     public void iniciarCampanha(int campanhaId) {
         if (cargoPessoaDAO.hasRequiredRole(idCargoPessoa)) {
             CampanhaDTO campanha = camp.getCampanhaById(campanhaId);
