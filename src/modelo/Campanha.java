@@ -24,6 +24,41 @@ public class Campanha {
         this.dtFim = dtFim;
         this.campanha_DAO = new CampanhaDAO()
     }
+    public class Mensagem {
+        private final int idMensagem;
+        private final String conteudo;
+        private final Date dataEnvio;
+        private final int idCampanha;
+        private final MensagemDAO mensagemDAO;
+
+        public Mensagem(int idMensagem, String conteudo, Date dataEnvio, int idCampanha, Connection connection) {
+            this.idMensagem = idMensagem;
+            this.conteudo = conteudo;
+            this.dataEnvio = dataEnvio;
+            this.idCampanha = idCampanha;
+            this.mensagemDAO = new MensagemDAO(connection);
+        }
+
+        public int getIdMensagem() {
+            return idMensagem;
+        }
+
+        public String getConteudo() {
+            return conteudo;
+        }
+
+        public Date getDataEnvio() {
+            return dataEnvio;
+        }
+
+        public int getIdCampanha() {
+            return idCampanha;
+        }
+
+        public void enviarMensagem(int idCliente) {
+            mensagemDAO.enviarMensagem(idMensagem, idCliente);
+        }
+    }
 
     public int getIdCampanha() {
         return idCampanha;

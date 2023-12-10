@@ -86,6 +86,24 @@ public class CampanhaDAO {
         return publicoAlvo;
     }
 }
+public class MensagemDAO {
+    private final Connection connection;
+
+    public MensagemDAO(Connection connection) {
+        this.connection = connection;
+    }
+
+    public void enviarMensagem(int idMensagem, int idCliente) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO mensagem_cliente (id_mensagem, id_cliente) VALUES (?, ?)");
+            preparedStatement.setInt(1, idMensagem);
+            preparedStatement.setInt(2, idCliente);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+}
     public List<CampanhaDTO> buscarTodasCampanhas() {
         List<CampanhaDTO> campanhas = new ArrayList<>();
         String query = "SELECT * FROM campanha";

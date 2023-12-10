@@ -84,4 +84,11 @@ public class CampanhaControladora {
             }
         }
     }
+    public void enviarMensagemCampanha(int campanhaId, String conteudo) {
+        if (cargoPessoaDAO.hasRequiredRole(idCargoPessoa)) {
+            CampanhaDTO campanha = camp.getCampanhaById(campanhaId);
+            if (campanha != null) {
+                Mensagem novaMensagem = new Mensagem(0, conteudo, new Date(), campanhaId, connection);
+                novaMensagem.enviarMensagemParaClientes();
+            }
 }
