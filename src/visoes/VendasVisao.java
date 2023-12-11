@@ -38,14 +38,14 @@ public class VendasVisao {
 	private JTextField descVendedor;
 	private JTextField descCliente;
 	private JTextField descProduto;
-	private JTextField textField_3;
+	private JTextField totalCompra;
 	private VendasControladora vendasControladora;
 	String[] columnNames = {"CÓD", "DESCRIÇÃO", "QTD", "VALOR"};
-	static JTable table;
+	static JTable tabelaVenda;
 	String from;
 	PreparedStatement pst;
 	Connection con;
-	private JTextField textField;
+	private JTextField qtdProduto;
 	
 	public JFrame getFrame() {
 		return Vendas;
@@ -95,7 +95,7 @@ public class VendasVisao {
 				Vendas.setVisible(false);
 			}
 		});
-		buscar_vendedor.setIcon(new ImageIcon("C:\\Users\\jacks\\OneDrive - Associacao Antonio Vieira\\Área de Trabalho\\UNISINOS\\3° SEMESTRE\\POO\\JAVA\\CRM_Uni\\imagens\\lupa16.png"));
+		buscar_vendedor.setIcon(new ImageIcon("C:\\Users\\jacks\\Desktop\\JAVA\\CRM_Uni\\imagens\\lupa16.png"));
 		buscar_vendedor.setBounds(620, 82, 25, 25);
 		Vendas.getContentPane().add(buscar_vendedor);
 		
@@ -165,25 +165,25 @@ public class VendasVisao {
         modelProduto.setColumnIdentifiers(columnNames);
         //DefaultTableModel model = new DefaultTableModel(tm.getData1(), tm.getColumnNames());
         //table = new JTable(model);
-        table = new JTable();
-        table.setBounds(131, 255, 514, 184);
-        table.setModel(modelProduto);
-        table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-        table.setFillsViewportHeight(true);
-        Vendas.getContentPane().add(table);
+        tabelaVenda = new JTable();
+        tabelaVenda.setBounds(131, 255, 514, 184);
+        tabelaVenda.setModel(modelProduto);
+        tabelaVenda.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+        tabelaVenda.setFillsViewportHeight(true);
+        Vendas.getContentPane().add(tabelaVenda);
         
         
  ///////////////////////
         
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(566, 452, 79, 19);
-		Vendas.getContentPane().add(textField_3);
+		totalCompra = new JTextField();
+		totalCompra.setColumns(10);
+		totalCompra.setBounds(566, 452, 79, 19);
+		Vendas.getContentPane().add(totalCompra);
 		
-		JButton btnNewButton_1_1 = new JButton("FINALIZAR COMPRA");
-		btnNewButton_1_1.setForeground(Color.BLACK);
-		btnNewButton_1_1.setBounds(450, 509, 195, 21);
-		Vendas.getContentPane().add(btnNewButton_1_1);
+		JButton finalizaCompra = new JButton("FINALIZAR COMPRA");
+		finalizaCompra.setForeground(Color.BLACK);
+		finalizaCompra.setBounds(450, 509, 195, 21);
+		Vendas.getContentPane().add(finalizaCompra);
 		
 //		List nome_produto = new List();
 //		nome_produto.setBounds(158, 269, 365, 168);
@@ -205,36 +205,36 @@ public class VendasVisao {
 	    @SuppressWarnings({ "rawtypes" })
 		final DefaultComboBoxModel modelPagamento = new DefaultComboBoxModel(frm_pagamento);
 		@SuppressWarnings("rawtypes")
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Selecionar...", "PIX", "Dinheiro", "Crédito", "Débito"}));
-		comboBox.setBackground(new Color(255, 255, 255));
-		comboBox.setForeground(new Color(0, 0, 0));
-		comboBox.setBounds(241, 508, 131, 22);
-		Vendas.getContentPane().add(comboBox);
+		JComboBox frmPagamento = new JComboBox();
+		frmPagamento.setModel(new DefaultComboBoxModel(new String[] {"Selecionar...", "PIX", "Dinheiro", "Crédito", "Débito"}));
+		frmPagamento.setBackground(new Color(255, 255, 255));
+		frmPagamento.setForeground(new Color(0, 0, 0));
+		frmPagamento.setBounds(241, 508, 131, 22);
+		Vendas.getContentPane().add(frmPagamento);
 		
 		JButton buscar_cliente = new JButton("");
-		buscar_cliente.setIcon(new ImageIcon("C:\\Users\\jacks\\OneDrive - Associacao Antonio Vieira\\Área de Trabalho\\UNISINOS\\3° SEMESTRE\\POO\\JAVA\\CRM_Uni\\imagens\\lupa16.png"));
+		buscar_cliente.setIcon(new ImageIcon("C:\\Users\\jacks\\Desktop\\JAVA\\CRM_Uni\\imagens\\lupa16.png"));
 		buscar_cliente.setBounds(620, 125, 25, 25);
 		Vendas.getContentPane().add(buscar_cliente);
 		
 		JButton buscar_produto = new JButton("");
-		buscar_produto.setIcon(new ImageIcon("C:\\Users\\jacks\\OneDrive - Associacao Antonio Vieira\\Área de Trabalho\\UNISINOS\\3° SEMESTRE\\POO\\JAVA\\CRM_Uni\\imagens\\lupa16.png"));
+		buscar_produto.setIcon(new ImageIcon("C:\\Users\\jacks\\Desktop\\JAVA\\CRM_Uni\\imagens\\lupa16.png"));
 		buscar_produto.setBounds(620, 171, 25, 25);
 		Vendas.getContentPane().add(buscar_produto);
 		
-		JButton btnNewButton_1_1_1 = new JButton("ADICIONAR PRODUTO");
-		btnNewButton_1_1_1.setBounds(450, 216, 195, 21);
-		Vendas.getContentPane().add(btnNewButton_1_1_1);
+		JButton adicionarProduto = new JButton("ADICIONAR PRODUTO");
+		adicionarProduto.setBounds(450, 216, 195, 21);
+		Vendas.getContentPane().add(adicionarProduto);
 		
 		JLabel lblQuantidade = new JLabel("QUANTIDADE:");
 		lblQuantidade.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblQuantidade.setBounds(131, 220, 111, 13);
 		Vendas.getContentPane().add(lblQuantidade);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(247, 217, 79, 19);
-		Vendas.getContentPane().add(textField);
+		qtdProduto = new JTextField();
+		qtdProduto.setColumns(10);
+		qtdProduto.setBounds(247, 217, 79, 19);
+		Vendas.getContentPane().add(qtdProduto);
 		
 		JLabel lblTotal = new JLabel("TOTAL:");
 		lblTotal.setFont(new Font("Tahoma", Font.BOLD, 16));
