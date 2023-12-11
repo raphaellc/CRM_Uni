@@ -23,14 +23,14 @@ public class ProdutoModelo {
     }
     
     
-    public ProdutoDto buscarProduto(int id_produto) {
+    public ProdutoDto buscarProduto(String nomeProduto) {
     	List<ProdutoDto> listaProdutos = produto_dao.listarProdutos();
     	for (ProdutoDto produto : listaProdutos) {	
-	    		if (id_produto != produto.getId_produto()) {
+	    		if (!nomeProduto.equals(produto.getDescricao_produto())) {
 	    			return null;	  
 	    		}
     		}
-    	return produto_dao.buscarProduto(id_produto);
+    	return produto_dao.buscarProduto(nomeProduto);
     }
     
     

@@ -71,16 +71,16 @@ public class ProdutoDao {
     }
 
 	
-	public ProdutoDto buscarProduto(int id_produto) {
+	public ProdutoDto buscarProduto(String nomeProduto) {
 		Connection connection = null;
         
        	connection = conectar(); // Obtém a conexão usando a classe Conexao
        	
-       	String sql = "SELECT idProdutos, quantidadeProdutos, valorUnitario, descricaoProduto FROM produtos WHERE idProduto=?";
+       	String sql = "SELECT idProdutos, quantidadeProdutos, valorUnitario, descricaoProduto FROM produtos WHERE descricaoProduto LIKE %?%";
 		try {
 			PreparedStatement ps = connection.prepareStatement(sql);
 		
-			ps.setInt(1, id_produto);
+			ps.setString(1, nomeProduto);
 
 			ResultSet rs = ps.executeQuery();
 			

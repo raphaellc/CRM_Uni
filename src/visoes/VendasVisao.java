@@ -8,6 +8,7 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import controladoras.VendasControladora;
+import modelos.ProdutoModelo;
 
 import javax.swing.JButton;
 import java.awt.Font;
@@ -39,13 +40,15 @@ public class VendasVisao {
 	private JTextField descCliente;
 	private JTextField descProduto;
 	private JTextField totalCompra;
+	private JTextField qtdProduto;
 	private VendasControladora vendasControladora;
-	String[] columnNames = {"CÓD", "DESCRIÇÃO", "QTD", "VALOR"};
+	private PessoaControladora pessoaControladora;
+	private ProdutoModelo produtoModelo;
 	static JTable tabelaVenda;
 	String from;
 	PreparedStatement pst;
 	Connection con;
-	private JTextField qtdProduto;
+	String[] columnNames = {"CÓD", "DESCRIÇÃO", "QTD", "VALOR"};
 	
 	public JFrame getFrame() {
 		return Vendas;
@@ -70,8 +73,9 @@ public class VendasVisao {
 	/**
 	 * Create the application.
 	 */
-	public VendasVisao(VendasControladora vendasControladora) {
+	public VendasVisao(VendasControladora vendasControladora, PessoaControladora pessoaControladora) {
 		this.vendasControladora = vendasControladora;
+		this.pessoaControladora = pessoaControladora;
 		initialize();
 	}
 
@@ -90,7 +94,7 @@ public class VendasVisao {
 		JButton buscar_vendedor = new JButton("");
 		buscar_vendedor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BuscaVendedorVisao buscaVendedor = new BuscaVendedorVisao(vendasControladora);
+				TelaListagemContato buscaVendedor = new TelaListagemContato("CRMUni", pessoaControladora, Vendas);
 				buscaVendedor.getFrame().setVisible(true);
 				Vendas.setVisible(false);
 			}
@@ -213,11 +217,23 @@ public class VendasVisao {
 		Vendas.getContentPane().add(frmPagamento);
 		
 		JButton buscar_cliente = new JButton("");
+		buscar_cliente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaListagemContato buscaCliente = new TelaListagemContato("CRMUni", pessoaControladora, Vendas);
+				buscaCliente.getFrame().setVisible(true);
+				Vendas.setVisible(false);
+			}
+		});
 		buscar_cliente.setIcon(new ImageIcon("C:\\Users\\jacks\\Desktop\\JAVA\\CRM_Uni\\imagens\\lupa16.png"));
 		buscar_cliente.setBounds(620, 125, 25, 25);
 		Vendas.getContentPane().add(buscar_cliente);
 		
 		JButton buscar_produto = new JButton("");
+		buscar_produto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				produtoModelo.buscarProduto(descProduto.getText());
+			}
+		});
 		buscar_produto.setIcon(new ImageIcon("C:\\Users\\jacks\\Desktop\\JAVA\\CRM_Uni\\imagens\\lupa16.png"));
 		buscar_produto.setBounds(620, 171, 25, 25);
 		Vendas.getContentPane().add(buscar_produto);
